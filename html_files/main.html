@@ -24,12 +24,19 @@
             height: 100%;
             transition: width 1s;
         }
-        li.sidemenu {
+        .sidemenu {
             height: 50px;
-            text-decoration: none;
             overflow: hidden;
         }
-        nav:hover {
+        .sidemenu>a {
+            text-decoration: none;
+            color: white;
+        }
+        .sidemenu>a:hover {
+            text-decoration:underline;
+            color: white;
+        }
+        nav:hover{
             position: fixed;
             background-color: rgb(40, 40, 40);
             float: left;
@@ -42,7 +49,6 @@
             align-items: center;
             text-align: center;
             float: right;
-            align-content: center;
             width: 90%;
             height: 80%;
         }
@@ -65,11 +71,10 @@
             text-align: center;
         }
         input {
-            font-size: 20px;
-            font-weight: bold;
-            color: gray;
+            color: white;
             background-color: rgb(78, 78, 78);
             border: 0px;
+            width: 250px;
             height: 40px;
             margin: 10px;
         }
@@ -92,9 +97,9 @@
         <nav>
             <img src="" alt="메뉴 아이콘" id="menu_icon">
             <ul>
-                <li class="sidemenu">Trending</li>
-                <li class="sidemenu">Favorite</li>
-                <li class="sidemenu">History</li>
+                <li class="sidemenu"><a href="http://">Trending</a></li>
+                <li class="sidemenu"><a href="http://">Favorite</a></li>
+                <li class="sidemenu"><a href="http://">History</a></li>
             </ul>
         </nav>
         <section>
@@ -102,8 +107,10 @@
                 <div>
                     <h3>Login</h3>
                     <form action="../php_files/login.php" method="post">
-                        <input type="text" id="username" name="username" value="Username" required><br>
-                        <input type="password" id="password" name="password" value="Password" required><br>
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required><br>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required><br>
                         <button type="submit" id="login">Login</button>
                     </form>
                 </div>
