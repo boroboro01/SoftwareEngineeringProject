@@ -5,3 +5,35 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE
 );
+
+CREATE DATABASE MovieLens;
+USE MovieLens;
+
+-- movies 테이블
+CREATE TABLE movies (
+    movieId INT PRIMARY KEY,
+    title VARCHAR(255),
+    genres VARCHAR(255)
+);
+
+-- ratings 테이블
+CREATE TABLE ratings (
+    userId INT,
+    movieId INT,
+    rating FLOAT,
+    timestamp BIGINT,
+    PRIMARY KEY (userId, movieId),
+    FOREIGN KEY (movieId) REFERENCES movies(movieId)
+);
+
+-- tags 테이블
+CREATE TABLE tags (
+    userId INT,
+    movieId INT,
+    tag VARCHAR(255),
+    timestamp BIGINT,
+    PRIMARY KEY (userId, movieId, tag(191)),  -- tag 필드에 대한 키 길이 지정
+    FOREIGN KEY (movieId) REFERENCES movies(movieId)
+);
+
+
