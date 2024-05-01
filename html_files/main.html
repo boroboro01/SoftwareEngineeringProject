@@ -24,17 +24,29 @@
             height: 100%;
             transition: width 1s;
         }
+        #menu_icon{
+            background-color: white; /*메뉴 아이콘 안보여서 임시 배경색 설정*/
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
         .sidemenu {
             height: 50px;
             overflow: hidden;
         }
-        .sidemenu>a {
+        .sidemenu > a {
+            white-space: nowrap;
             text-decoration: none;
             color: white;
         }
         .sidemenu>a:hover {
             text-decoration:underline;
             color: white;
+        }
+        #login_a {
+            margin-left: 40px;
+            bottom: 10px;
         }
         nav:hover{
             position: fixed;
@@ -44,7 +56,6 @@
             height: 100%;
         }
         section {
-            display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -57,33 +68,36 @@
             width: 90%;
             height: 10%;
         }
+        #recommend {
+            height: 100%;
+        }
+        div.recommend_box {
+            height: 660px;
+        }
         h1.title {
             color: aqua;
             text-align: center;
             margin: 0;
+            margin-top: 10px;
             padding: 0;
         }
-        article.login_box {
-            width: 300px;
-            height: 300px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px 5px aqua;
-            text-align: center;
+        h2.subtitle {
+            margin-top: 0;
+            padding: 0;
         }
-        input {
-            color: white;
-            background-color: rgb(78, 78, 78);
-            border: 0px;
-            width: 250px;
-            height: 40px;
-            margin: 10px;
+        article {
+            width: 100%;
         }
-        button#login {
-            border: none;
-            width: 100px;
-            height: 20px;
-            color: black;
-            background-color: rgb(0, 180, 180);
+        hr.footer_bar {
+            width: 95%;
+            color: grey;
+        }
+        #recommending {
+            position: absolute;
+            float: right;
+            bottom: 0;
+            right: 0;
+            height: 15%;
         }
         @keyframes imagerotation { 
         }
@@ -95,29 +109,28 @@
             <h1 class="title">SEENEMA</h1>
         </header>
         <nav>
-            <img src="" alt="메뉴 아이콘" id="menu_icon">
+            <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
             <ul>
-                <li class="sidemenu"><a href="http://">Trending</a></li>
+                <li class="sidemenu"><a href="./main.html">Trending</a></li>
                 <li class="sidemenu"><a href="http://">Favorite</a></li>
                 <li class="sidemenu"><a href="http://">History</a></li>
             </ul>
+            <div id="login_a" class="sidemenu">
+                <a href="./login.html">Log in</a>
+            </div>
         </nav>
         <section>
-            <article class="login_box">
-                <div>
-                    <h3>Login</h3>
-                    <form action="../php_files/login.php" method="post">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" required><br>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required><br>
-                        <button type="submit" id="login">Login</button>
-                    </form>
+            <article>
+                <h2 class="subtitle">Treding</h2>
+                <div class="recommend_box">
+                    <a href=""><img src="../Assets/Images/Posters/elemental.webp" alt="영화 포스터" id="recommend"></a>
+                       
                 </div>
             </article>
         </section>
         <footer>
-
+            <hr class="footer_bar">
+            <a href=""><img src="../Assets/Images/Vectors/magnifier_animal_inu.png" alt="영화 추천 받기" id="recommending"></a>
         </footer>
     </div>
 </body>
