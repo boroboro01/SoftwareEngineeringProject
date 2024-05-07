@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="../css_files/login_style.css">
+    <title>main</title>
+    <link rel="stylesheet" href="../css_files/main_style.css">
 </head>
 <body>
     <div>
@@ -18,23 +18,22 @@
                 <li class="sidemenu"><a href="http://">Favorite</a></li>
                 <li class="sidemenu"><a href="http://">History</a></li>
             </ul>
+            <div id="login_a" class="sidemenu">
+                <a href="./login.html">Log in</a>
+            </div>
         </nav>
         <section>
-            <article class="login_box">
-                <div>
-                    <h3>Login</h3>
-                    <form action="../php_files/login.php" method="post">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" required><br>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required><br>
-                        <button type="submit" id="login">Login</button>
-                    </form>
+            <article>
+                <h2 class="subtitle">Treding</h2>
+                <div class="recommend_box">
+                    <a href=""><img src="../Assets/Images/Posters/elemental.webp" alt="영화 포스터" id="recommend"></a>
+                       
                 </div>
             </article>
         </section>
         <footer>
-
+            <hr class="footer_bar">
+            <a href=""><img src="../Assets/Images/Vectors/magnifier_animal_inu.png" alt="영화 추천 받기" id="recommending"></a>
         </footer>
     </div>
 </body>
