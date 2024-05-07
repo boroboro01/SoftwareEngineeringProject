@@ -1,47 +1,3 @@
-html, body { margin: 0; padding: 0; height: 100%; }
-body > div {
-    background-color: black;
-    height: 100%;
-    color: white;
-}
-header {
-    float: right;
-    width: 90%;
-    height: 10%;
-}
-nav {
-    position: fixed;
-    float: left;
-    background-color: rgb(40, 40, 40);
-    width: 0%;
-    height: 100%;
-    transition: width 1s;
-}
-#menu_icon{
-    width: 40px;
-    height: 40px;
-    margin-left: 10px;
-    margin-top: 10px;
-}
-.sidemenu {
-    height: 50px;
-    overflow: hidden;
-}
-.sidemenu>a {
-    text-decoration: none;
-    color: white;
-}
-.sidemenu>a:hover {
-    text-decoration:underline;
-    color: white;
-}
-nav:hover{
-    position: fixed;
-    background-color: rgb(40, 40, 40);
-    float: left;
-    width: 150px;
-    height: 100%;
-}
 section {
     display: flex;
     justify-content: center;
@@ -50,17 +6,6 @@ section {
     float: right;
     width: 90%;
     height: 80%;
-}
-footer {
-    float: right;
-    width: 90%;
-    height: 10%;
-}
-h1.title {
-    color: white;
-    text-align: center;
-    margin: 0;
-    padding: 0;
 }
 article.login_box {
     width: 300px;

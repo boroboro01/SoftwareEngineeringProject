@@ -36,10 +36,6 @@ nav {
     text-decoration:underline;
     color: white;
 }
-#login_a {
-    margin-left: 40px;
-    bottom: 10px;
-}
 nav:hover{
     position: fixed;
     background-color: rgb(40, 40, 40);
@@ -67,7 +63,7 @@ div.recommend_box {
     height: 660px;
 }
 h1.title {
-    color: aqua;
+    color: white;
     text-align: center;
     margin: 0;
     margin-top: 10px;
@@ -84,12 +80,26 @@ hr.footer_bar {
     width: 95%;
     color: grey;
 }
+.sizedbox {
+    height: 50px;
+}
+.sizedbox_large {
+    height: 60%;
+}
+nav > ul > li {
+    list-style-type: none;
+}
+.login_conatiner {
+    color: white;
+    height: auto;
+    width: auto;
+}
 #recommending {
     position: absolute;
     float: right;
     bottom: 0;
     right: 0;
-    height: 15%;
+    height: 20%;
 }
 @keyframes imagerotation { 
 }
