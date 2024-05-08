@@ -5,7 +5,7 @@ session_start(); // 세션을 시작합니다.
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "user_db";
+$dbname = "movielens";
 $conn = new mysqli($servername, $username, "", $dbname);
 
 // 연결 에러 확인

@@ -51,12 +51,49 @@
         echo "</p>";
         echo "<a href='movieList.php'>Back to Movie List</a><br>";
         echo "<a href='../html_files/movieComment.php?movieId=" . $movieId . "'>Add rating and tag</a>";
+        echo "<a href=\"#\" class=\"favorite-toggle\" data-movie-id=\"<?php echo $movieId; ?>\" data-favorited=\"0\">
+        <span class=\"heart\">&#x2661;</span></a>";
     } else {
         echo "<p>Movie not found.</p>";
     }
 
     $conn->close();
     ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var favoriteLinks = document.querySelectorAll('.favorite-toggle');
+
+            favoriteLinks.forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var movieId = this.getAttribute('data-movie-id');
+                    var isFavorited = this.getAttribute('data-favorited') === '1';
+
+                    fetch('../html_files/favoriteHandler.php?movieId=' + movieId + '&favorited=' + isFavorited)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // 좋아요 상태에 따라 아이콘 변경
+                                if (isFavorited) {
+                                    this.innerHTML = '<span class="heart">&#x2661;</span>'; // 빈 하트
+                                    this.setAttribute('data-favorited', '0');
+                                    alert('Favorite removed'); // 추가: 제거 성공 메시지
+                                } else {
+                                    this.innerHTML = '<span class="heart">&#x2665;</span>'; // 꽉 찬 하트
+                                    this.setAttribute('data-favorited', '1');
+                                    alert('Favorite added'); // 추가: 추가 성공 메시지
+                                }
+                            } else {
+                                alert('Error toggling favorite: ' + data.message); // 실패 메시지
+                            }
+                        })
+                        .catch(error => {
+                            alert('An error occurred: ' + error.message); // 네트워크 오류 처리
+                        });
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
