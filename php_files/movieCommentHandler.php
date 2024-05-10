@@ -3,10 +3,9 @@ session_start(); // 세션 시작
 
 // 로그인 상태 확인
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    // 로그인 상태가 아닌 경우 경고 메시지를 출력하고 로그인 페이지로 리디렉션
     echo "<script>alert('You must be logged in to add tag and rating');
     window.location.href = '../html_files/login.html';</script>";
-    exit; // 추가 실행을 방지
+    exit;
 }
 
 // 데이터베이스 연결 설정
@@ -25,23 +24,28 @@ if ($conn->connect_error) {
 $movieId = $_POST['movieId'];
 $rating = $_POST['rating'];
 $tag = $_POST['tag'];
-$userId = $_SESSION['user_id']; // 세션에서 사용자 ID 가져오기
+$userId = $_SESSION['user_id'];
 
-// 별점 데이터 저장
-$sql = "INSERT INTO ratings (userId, movieid, rating) VALUES (?, ?, ?)";
+// 별점 데이터 저장 또는 업데이트
+$sql = "INSERT INTO ratings (userId, movieId, rating) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE rating = VALUES(rating)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("iid", $userId, $movieId, $rating);
-$stmt->execute();
+if (!$stmt->execute()) {
+    echo "<script>alert('Failed to save or update your rating.'); window.location.href = './movieList.php';</script>";
+    exit;
+}
 
-// 태그 데이터 저장
-$sql = "INSERT INTO tags (userId, movieId, tag) VALUES (?, ?, ?)";
+// 태그 데이터 저장 또는 업데이트
+$sql = "INSERT INTO tags (userId, movieId, tag) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE tag = VALUES(tag)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("iis", $userId, $movieId, $tag);
-$stmt->execute();
+if (!$stmt->execute()) {
+    echo "<script>alert('Failed to save or update your tag.'); window.location.href = './movieList.php';</script>";
+    exit;
+}
 
 $stmt->close();
 $conn->close();
 
-echo "<script>alert('Your comment has been saved.');
-    window.location.href = './movieList.php';</script>";
+echo "<script>alert('Your comment has been successfully saved or updated.'); window.location.href = './movieList.php';</script>";
 ?>

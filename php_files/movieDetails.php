@@ -51,8 +51,25 @@
         echo "</p>";
         echo "<a href='movieList.php'>Back to Movie List</a><br>";
         echo "<a href='../html_files/movieComment.php?movieId=" . $movieId . "'>Add rating and tag</a>";
-        echo "<a href=\"#\" class=\"favorite-toggle\" data-movie-id=\"<?php echo $movieId; ?>\" data-favorited=\"0\">
-        <span class=\"heart\">&#x2661;</span></a>";
+
+        $userId = $_SESSION['user_id'];  // 사용자 ID를 세션에서 가져옵니다.
+        $favorited = 0;  // 기본적으로 좋아요가 되어있지 않다고 가정
+    
+        // 좋아요 상태를 확인하는 쿼리
+        $favQuery = "SELECT 1 FROM favorites WHERE user_id = ? AND movie_id = ?";
+        $favStmt = $conn->prepare($favQuery);
+        if ($favStmt === false) {
+            die("Prepare failed: " . htmlspecialchars($conn->error));
+        }
+        $favStmt->bind_param("ii", $userId, $movieId);
+        $favStmt->execute();
+        $favResult = $favStmt->get_result();
+        if ($favResult->fetch_assoc()) {
+            $favorited = 1;  // 좋아요 상태가 확인되면 변수를 1로 설정
+        }
+        $favStmt->close();
+        echo '<a href="#" class="favorite-toggle" data-movie-id="' . $movieId . '" data-favorited="' . $favorited . '">
+        <span class="heart">' . ($favorited ? '&#x2665;' : '&#x2661;') . '</span></a>';
     } else {
         echo "<p>Movie not found.</p>";
     }
@@ -67,10 +84,16 @@
                 link.addEventListener('click', function (e) {
                     e.preventDefault();
                     var movieId = this.getAttribute('data-movie-id');
-                    var isFavorited = this.getAttribute('data-favorited') === '1';
+                    var favorited = this.getAttribute('data-favorited')
+                    var isFavorited = favorited === '1';
 
-                    fetch('../html_files/favoriteHandler.php?movieId=' + movieId + '&favorited=' + isFavorited)
-                        .then(response => response.json())
+                    fetch('favoriteHandler.php?movieId=' + movieId + '&favorited=' + favorited)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
                         .then(data => {
                             if (data.success) {
                                 // 좋아요 상태에 따라 아이콘 변경
@@ -88,7 +111,7 @@
                             }
                         })
                         .catch(error => {
-                            alert('An error occurred: ' + error.message); // 네트워크 오류 처리
+                            console.error('There was a problem with the fetch operation:', error.message);
                         });
                 });
             });
