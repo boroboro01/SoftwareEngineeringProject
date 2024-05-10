@@ -31,6 +31,8 @@
 
         if ($movie = $result->fetch_assoc()) {
             echo "<h1>" . htmlspecialchars($movie['title']) . "</h1>";
+            echo "<img src='../Assets/Images/Posters/" . $movieId . ".jpg' alt='" .
+                htmlspecialchars($movie['title']) . " Poster' style='width:200px;'>";
             echo "<p>Average Rating: " . round($movie['average_rating'], 2) . "</p>";
         } else {
             echo "<p>No movie found.</p>";
