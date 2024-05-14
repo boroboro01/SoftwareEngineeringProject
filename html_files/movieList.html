@@ -1,9 +1,9 @@
-<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List</title>
     <title>Movie List</title>
     <style>
         html, body { margin: 0; padding: 0; height: 100%; }
@@ -126,9 +126,7 @@
         @keyframes imagerotation { 
         }
     </style>
-
 </head>
-
 <body>
     <header>
         <h1>Movie List</h1>
@@ -143,74 +141,33 @@
                     <a href="../php_files/movieList.php">Movie List</a>
                 </div>
             </ul>
-            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
-                <div id="login_a" class="sidemenu">
-                    <a href="./logout.php">Log out</a>
-                </div>
-                <div id="username" class="sidemenu">
-                    <p> Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></p>
-                </div>
-            <?php else: ?>
-                <div id="login_a" class="sidemenu">
-                    <a href="../html_files/login.html">Log in</a>
-                </div>
-                <div id="register_a" class="sidemenu">
-                    <a href="../html_files/register.html">Register</a>
-                </div>
-            <?php endif; ?>
+            <div class="sizedbox_large"></div>
+            <ul>
+                <li class="sidemenu" id="login_a">
+                    <a href="./login.html">Log in</a>
+                </li>
+                <li class="sidemenu" id="register_a">
+                    <a href="./register.html">Register</a>
+                </li>
+            </ul>
     </nav>
     <section>
-    <?php
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "1234";
-    $dbname = "movielens";
-    $conn = new mysqli($servername, $username, "", $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $results_per_page = 10;
-    $page = 1;
-    if (isset($_GET["page"])) {
-        $page = intval($_GET["page"]);
-    }
-    $offset = ($page - 1) * $results_per_page;
-
-    $sql = "SELECT COUNT(*) AS total FROM movies";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $total_pages = ceil($row["total"] / $results_per_page);
-
-    $sql = "SELECT movieId, title, genres FROM movies LIMIT $results_per_page OFFSET $offset";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        echo "<table><tr><th class=\"title\">Title</th><th class=\"genres\">Genres</th></tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr><td class=\"title\"><a href='movieDetails.php?movieId=" . $row['movieId'] .
-                "'>" . htmlspecialchars($row["title"]) .
-                "</a></td><td class=\"genres\">" . htmlspecialchars($row["genres"]) . "</td></tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "0 results";
-    }
-
-    $num_links = 10;
-    $start = max(1, $page - ($num_links / 2));
-    $end = min($total_pages, $start + $num_links - 1);
-
-    echo "<div class='pagination'>";
-    for ($i = $start; $i <= $end; $i++) {
-        echo "<a href='?page=$i'" . ($page == $i ? " class='active'" : "") . ">$i</a>";
-    }
-    echo "</div>";
-
-    $conn->close();
-    ?>
+        <table>
+            <tr>
+                <th class=\"title\">Title</th>
+                <th class=\"genres\">Genres</th>
+            </tr>
+            <tr>
+                <td class=\"title\"><a href='movieDetails.php?movieId=" . $row['movieId'] ."'>" . htmlspecialchars($row["title"]) . "</a></td>
+                <td class=\"genres\">" . htmlspecialchars($row["genres"]) . "</td>
+            </tr>
+        </table>    
+        <div class='pagination'>
+            <a href='?page=$i' class='active'></a>
+        </div>
     </section>
-</body>
+    <footer>
 
+    </footer>
+</body>
 </html>
