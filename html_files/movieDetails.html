@@ -1,9 +1,8 @@
-<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Details</title>
     <style>
         html, body { margin: 0; padding: 0; height: 100%; }
@@ -113,66 +112,43 @@
         }
     </style>
 </head>
-
 <body>
-    <?php
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "1234";
-    $dbname = "movielens";
-    $conn = new mysqli($servername, $username, "", $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    if (isset($_GET['movieId'])) {
-        $movieId = intval($_GET['movieId']);
-
-
-        $sql = "SELECT m.title, AVG(r.rating) AS average_rating FROM ratings r JOIN movies m ON r.movieId = m.movieId WHERE r.movieId = $movieId GROUP BY m.title";
-        $result = $conn->query($sql);
-        if (!$result) {
-            die("SQL error: " . $conn->error);
-        }
-
-        if ($movie = $result->fetch_assoc()) {
-            echo "<header><h1>" . htmlspecialchars($movie['title']) . "</h1><header>";
-            echo "<nav>
-            <img src=\"../Assets/Icons/menu.png\" alt=\"메뉴 아이콘\" id=\"menu_icon\">
+    <header>
+        <h1> . htmlspecialchars($movie['title']) .영화 제목 </h1>
+    </header>
+    <nav>
+        <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
+        <ul>
+            <li class="sidemenu"><a href="./main.html">Trending</a></li>
+            <li class="sidemenu"><a href="http://">Favorite</a></li>
+            <li class="sidemenu"><a href="http://">History</a></li>
+            <div id="movieList_a" class="sidemenu">
+                <a href="../php_files/movieList.php">Movie List</a>
+            </div>
+        </ul>
+        <div class="sizedbox_large"></div>
             <ul>
-                <li class=\"sidemenu\"><a href=\"./main.html\">Trending</a></li>
-                <li class=\"sidemenu\"><a href=\"http://\">Favorite</a></li>
-                <li class=\"sidemenu\"><a href=\"http://\">History</a></li>
-                <div id=\"movieList_a\" class=\"sidemenu\">
-                    <a href=\"../php_files/movieList.php\">Movie List</a>
-                </div>
-            </ul>
-            </nav>";
-            echo "<section><div class=\"infobox\"><p>Average Rating: " . round($movie['average_rating'], 2) . "</p>";
-        } else {
-            echo "<header><p>No movie found.</p><header>";
-        }
-
-        $sql = "SELECT tag FROM tags WHERE movieId = $movieId";
-        $tagsResult = $conn->query($sql);
-        if (!$tagsResult) {
-            die("SQL error: " . $conn->error);
-        }
-
-        echo "<p class=\"Taging\">Tags: ";
-        while ($tag = $tagsResult->fetch_assoc()) {
-            echo htmlspecialchars($tag['tag']) . " ";
-        }
-        echo "</p></div>";
-        echo "<div class=\"btnbox\"><a href='../html_files/movieComment.php?movieId=" . $movieId . "'>Add rating and tag</a>";
-        echo "<a href='movieList.php'>Back to Movie List</a></div>";
-    } else {
-        echo "<p>Movie not found.</p>";
-    }
-
-    $conn->close();
-    ?>
+                <li class="sidemenu" id="login_a">
+                    <a href="./login.html">Log in</a>
+                </li>
+                <li class="sidemenu" id="register_a">
+                    <a href="./register.html">Register</a>
+                </li>
+            </ul> 
+    </nav>
+    <section>
+        <div class="infobox">
+            <p class="rating">Average Rating: " . round($movie['average_rating'], 2) . 평점?</p>
+            <p class="Taging">Tags: ";
+                while ($tag = $tagsResult->fetch_assoc()) {
+                    echo htmlspecialchars($tag['tag']) . " ";
+                }
+            </p>
+        </div>
+        <div class="btnbox">
+            <a href='../html_files/movieComment.php?movieId=" . $movieId . "' class="btn add_btn">Add rating and tag</a>
+            <a href='movieList.php' class="btn back_btn">Back to Movie List</a>        
+        </div>
+    </section>
 </body>
-
 </html>
