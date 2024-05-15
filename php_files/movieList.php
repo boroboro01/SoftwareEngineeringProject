@@ -159,6 +159,10 @@
                 </div>
             <?php endif; ?>
     </nav>
+    <form action="" method="GET">
+        <input type="text" name="search" placeholder="Search for movies...">
+        <button type="submit">Search</button>
+    </form>
     <section>
     <?php
     $servername = "127.0.0.1";
@@ -171,6 +175,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
+    $search = isset($_GET['search']) ? $_GET['search'] : '';
     $results_per_page = 10;
     $page = 1;
     if (isset($_GET["page"])) {
@@ -178,24 +183,33 @@
     }
     $offset = ($page - 1) * $results_per_page;
 
-    $sql = "SELECT COUNT(*) AS total FROM movies";
-    $result = $conn->query($sql);
+    // Count the total number of results
+    $sql = "SELECT COUNT(*) AS total FROM movies WHERE title LIKE ?";
+    $stmt = $conn->prepare($sql);
+    $searchTerm = '%' . $search . '%';
+    $stmt->bind_param("s", $searchTerm);
+    $stmt->execute();
+    $result = $stmt->get_result();
     $row = $result->fetch_assoc();
     $total_pages = ceil($row["total"] / $results_per_page);
 
-    $sql = "SELECT movieId, title, genres FROM movies LIMIT $results_per_page OFFSET $offset";
-    $result = $conn->query($sql);
+    // Retrieve the results for the current page
+    $sql = "SELECT movieId, title, genres FROM movies WHERE title LIKE ? LIMIT ? OFFSET ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sii", $searchTerm, $results_per_page, $offset);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        echo "<table><tr><th class=\"title\">Title</th><th class=\"genres\">Genres</th></tr>";
+        echo "<table><tr><th class='title'>Title</th><th class='genres'>Genres</th></tr>";
         while ($row = $result->fetch_assoc()) {
-            echo "<tr><td class=\"title\"><a href='movieDetails.php?movieId=" . $row['movieId'] .
+            echo "<tr><td class='title'><a href='movieDetails.php?movieId=" . $row['movieId'] .
                 "'>" . htmlspecialchars($row["title"]) .
-                "</a></td><td class=\"genres\">" . htmlspecialchars($row["genres"]) . "</td></tr>";
+                "</a></td><td class='genres'>" . htmlspecialchars($row["genres"]) . "</td></tr>";
         }
         echo "</table>";
     } else {
-        echo "0 results";
+        echo "0 results found";
     }
 
     $num_links = 10;
