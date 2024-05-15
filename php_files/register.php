@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "user_db";
+$dbname = "movielens";
 
 // 데이터베이스 연결
 $conn = new mysqli($servername, $username, $password, $dbname);
