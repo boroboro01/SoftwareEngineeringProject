@@ -5,6 +5,115 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie Details</title>
+    <style>
+        html, body { margin: 0; padding: 0; height: 100%; }
+
+        body {
+            background-color: black;
+            height: 100%;
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            float: right;
+            width: 90%;
+            height: 10%;
+        }
+
+        nav {
+            margin: 0; padding: 0;
+            position: fixed;
+            float: left;
+            background-color: rgb(40, 40, 40);
+            width: 0%;
+            height: 100%;
+            transition: width 1s;
+        }
+
+        #menu_icon{
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+        .sidemenu {
+            height: 50px;
+            overflow: hidden;
+        }
+        .sidemenu > a {
+            white-space: nowrap;
+            text-decoration: none;
+            color: white;
+        }
+        .sidemenu>a:hover {
+            text-decoration:underline;
+            color: white;
+        }
+        nav:hover{
+            position: fixed;
+            background-color: rgb(40, 40, 40);
+            float: left;
+            width: 150px;
+            height: 100%;
+        }
+        .sizedbox_large {
+            height: 55%;
+        }
+
+        section {
+            padding: 10px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            float: right;
+            width: 90%;
+            height: 80%;
+        }
+
+        .infobox{
+            width: 100%;
+            height: 100px;
+
+        }
+
+        .btnbox {
+        }
+
+        .rating {
+            display: inline-block;
+        }
+
+        .Taging {
+            display: inline-block;
+            padding-left: 50px;
+        }
+
+        .btn {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            text-align: center;
+            width: 150px;
+            height: 36px;
+            background-color: white;
+            display: block;
+            text-decoration: none;
+            color: black;
+            border-radius: 20px;
+        }
+
+        .back_btn {
+            display: inline-block;
+        }
+
+        .add_btn {
+            display: inline-block;
+        }
+
+        @keyframes imagerotation { 
+        }
+    </style>
 </head>
 
 <body>
@@ -30,12 +139,21 @@
         }
 
         if ($movie = $result->fetch_assoc()) {
-            echo "<h1>" . htmlspecialchars($movie['title']) . "</h1>";
-            echo "<img src='../Assets/Images/Posters/" . $movieId . ".jpg' alt='" .
-                htmlspecialchars($movie['title']) . " Poster' style='width:200px;'>";
-            echo "<p>Average Rating: " . round($movie['average_rating'], 2) . "</p>";
+            echo "<header><h1>" . htmlspecialchars($movie['title']) . "</h1><header>";
+            echo "<nav>
+            <img src=\"../Assets/Icons/menu.png\" alt=\"메뉴 아이콘\" id=\"menu_icon\">
+            <ul>
+                <li class=\"sidemenu\"><a href=\"./main.html\">Trending</a></li>
+                <li class=\"sidemenu\"><a href=\"http://\">Favorite</a></li>
+                <li class=\"sidemenu\"><a href=\"http://\">History</a></li>
+                <div id=\"movieList_a\" class=\"sidemenu\">
+                    <a href=\"../php_files/movieList.php\">Movie List</a>
+                </div>
+            </ul>
+            </nav>";
+            echo "<section><div class=\"infobox\"><p>Average Rating: " . round($movie['average_rating'], 2) . "</p>";
         } else {
-            echo "<p>No movie found.</p>";
+            echo "<header><p>No movie found.</p><header>";
         }
 
         $sql = "SELECT tag FROM tags WHERE movieId = $movieId";
@@ -44,13 +162,13 @@
             die("SQL error: " . $conn->error);
         }
 
-        echo "<p>Tags: ";
+        echo "<p class=\"Taging\">Tags: ";
         while ($tag = $tagsResult->fetch_assoc()) {
             echo htmlspecialchars($tag['tag']) . " ";
         }
-        echo "</p>";
-        echo "<a href='movieList.php'>Back to Movie List</a><br>";
-        echo "<a href='../html_files/movieComment.php?movieId=" . $movieId . "'>Add rating and tag</a>";
+        echo "</p></div>";
+        echo "<div class=\"btnbox\"><a href='../html_files/movieComment.php?movieId=" . $movieId . "'>Add rating and tag</a>";
+        echo "<a href='movieList.php'>Back to Movie List</a></div>";
 
         $userId = $_SESSION['user_id'];  // 사용자 ID를 세션에서 가져옵니다.
         $favorited = 0;  // 기본적으로 좋아요가 되어있지 않다고 가정
