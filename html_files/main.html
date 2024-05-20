@@ -9,11 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script>
         function showPanel() {
-            var div = document.getElementsById('panel');
-            if (div.style.display === 'none'){
+            var div = document.getElementById('panel');
+            if (div.style.display === 'none' || div.style.display === '') {
                 div.style.display = 'block';
-            }
-            else if (div.style.display === 'block') {
+            } else {
                 div.style.display = 'none';
             }
         }
