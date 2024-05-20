@@ -102,6 +102,7 @@ nav > ul > li {
 /*추천 패널*/
 
 #panel {
+    border-radius: 50px;
     display: none;
     position: absolute;
     top: 10%;
@@ -152,6 +153,7 @@ nav > ul > li {
 }
 
 .movie_poster {
+    border-radius: 10px;
     width: 100%;
 }
 
