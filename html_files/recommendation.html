@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link rel="stylesheet" href="../css_files/main_style.css">
+    <style>
+        #first {
+            display: flex;
+            opacity: 1;
+            transition: 1s ease-in-out;
+        }
+        #first.hide {
+            display: flex;
+            opacity: 0;
+        }
+        #second {
+            display: flex;
+            opacity: 1;
+            transition: 1s ease-in-out;
+        }
+        #second.hide {
+            display: none;
+            opacity: 0;
+        }
+        section {
+            width: 100vw;
+            background: linear-gradient(#272122, #0d1423);
+            display: flex;
+        }
+         .card {
+            margin: 50px;
+            position: relative;
+            width: 10vw;
+            height: 320px;
+            background: linear-gradient(0deg, #0d1423, 50%, transparent);
+            border-radius: 20px;
+            overflow:hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 25);
+            transition: 1s;
+            cursor: pointer;
+        }
+        .card:hover {
+            width: 11vw;
+            background: linear-gradient(0deg, #050b18, 10%, transparent);
+        }
+        .card:hover .title span {
+            font-size: 40px;
+        }
+        .card:active {
+            width: 9vw;
+        }
+        .card .poster {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .card .poster img {
+            margin-top: 25px;
+            width: 80%;
+            transition: 1s;
+        }
+        .card .title {
+            position: absolute;
+            width: 100%;
+            margin-top: 230px;
+        }
+        .card .title span{
+            font-size: 35px;
+            color: #fff;
+            transition: 1s;
+        }
+        .pick-text {
+            color: #fff;
+        }
+        .image-list {
+            height: 80%;
+            width: 300px;
+            overflow: hidden;
+        }
+        .image-list .pick-image {
+            margin-top: 5px;
+            width: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <header>
+            <h1 class="title">SEENEMA</h1>
+        </header>
+        <nav>
+            <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
+            <ul>
+                <li class="sidemenu"><a href="./main.html">Trending</a></li>
+                <li class="sidemenu"><a href="http://">Favorite</a></li>
+                <li class="sidemenu"><a href="http://">History</a></li>
+                <div id="movieList_a" class="sidemenu">
+                    <a href="../php_files/movieList.php">Movie List</a>
+                </div>
+            </ul>
+            <div class="sizedbox_large"></div>
+                <ul>
+                    <li class="sidemenu" id="login_a">
+                        <a href="./login.html">Log in</a>
+                    </li>
+                    <li class="sidemenu" id="register_a">
+                        <a href="./register.html">Register</a>
+                    </li>
+                </ul> 
+        </nav>
+        <section>
+        <div id="first">
+            <div class="card" id="romance">
+                <div class="poster">
+                    <div class="sizedbox_small">
+                    </div>
+                    <img src="../Assets/Images/Vectors/renai3_young.png">
+                </div>
+                <div class="title">
+                    <span>Romance</span>
+                </div>
+            </div>
+            <div class="card"  id="action">
+                <div class="poster">
+                    <img src="../Assets/Images/Vectors/job_spy.png">
+                </div>
+                <div class="title">
+                    <span>Action</span>
+                </div>
+            </div>
+            <div class="card"  id="comedy">
+                <div class="poster">
+                    <div class="sizedbox">
+                    </div>
+                    <img src="../Assets/Images/Vectors/animal_music_band.png">
+                </div>
+                <div class="title">
+                    <span>Comedy</span>
+                </div>
+            </div>
+            <div class="card"  id="animation">
+                <div class="poster">
+                    <div class="sizedbox_small">
+                    </div>
+                    <img src="../Assets/Images/Vectors/kyodai_robot.png">
+                </div>
+                <div class="title">
+                    <span>Animation</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="second" class="hide">
+            <div class="card" id="romance">
+                <div class="poster">
+                    <div class="sizedbox_small">
+                    </div>
+                    <img src="../Assets/Images/Vectors/renai3_young.png">
+                </div>
+                <div class="title">
+                    <span>Romance</span>
+                </div>
+            </div>
+            <div class="card"  id="action">
+                <div class="poster">
+                    <img src="../Assets/Images/Vectors/job_spy.png">
+                </div>
+                <div class="title">
+                    <span>Action</span>
+                </div>
+            </div>
+        </div>
+        </section>
+        <footer>
+            <span class="pick-text">What you pick</span>
+            <div class="image-list">
+                <img id="pick1" class="pick-image" src="">
+                <img id="pick2" class="pick-image" src="">
+                <img id="pick3" class="pick-image" src="">
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+    let recommendation = [];
+    document.getElementById("romance").addEventListener("click", function() {
+        recommendation.push("Romance");
+        document.getElementById("pick1").src = "../Assets/Images/Vectors/renai3_young.png"
+        document.getElementById("first").classList.toggle('hide');
+        setTimeout(function(){
+            document.getElementById("first").style.display = 'none';
+            document.getElementById("second").classList.toggle('hide');
+        }, 1000);
+     })
+     document.getElementById("action").addEventListener("click", function() {
+        recommendation.push("Action");
+        document.getElementById("pick1").src = "../Assets/Images/Vectors/job_spy.png"
+     })
+     document.getElementById("comedy").addEventListener("click", function() {
+        recommendation.push("Comedy");
+        document.getElementById("pick1").src = "../Assets/Images/Vectors/animal_music_band.png"
+     })
+     document.getElementById("animation").addEventListener("click", function() {
+        recommendation.push("Animation");
+        document.getElementById("pick1").src = "../Assets/Images/Vectors/kyodai_robot.png"
+     })
+</script>
+
+</html>
