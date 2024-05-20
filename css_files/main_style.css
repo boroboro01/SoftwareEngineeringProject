@@ -98,3 +98,81 @@ nav > ul > li {
 }
 @keyframes imagerotation { 
 }
+
+/*추천 패널*/
+
+#panel {
+    border-radius: 50px;
+    display: none;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    width: 70%;
+    height: 80%;
+    background-color: rgba(150, 150, 150, 0.8);
+}
+
+.panel_main {
+    margin-top: 50px;
+}
+
+.panel_left {
+    margin-left: 10%;
+    float: left;
+    width: 280px;
+}
+
+.rating_star {
+    margin-top: 20px;
+}
+
+.rating_star > ul {
+    list-style-type: none;
+}
+
+.rating_star > ul > li {
+    padding-left: 20px;
+    float: left;
+    color: yellow;
+}
+
+.rating_star > ul > li > i {
+    scale: 150%;
+}
+
+.panel_right {
+    margin-left: 10%;
+    margin-right: 10%;
+    float: right;
+    float: left;
+    width: 40%;
+}
+
+.panel_title {
+    text-align: center;
+}
+
+.movie_poster {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.comment {
+    height: 100px;
+    font-size: large;
+}
+
+.comment_button {
+    margin-top: 50px;
+    margin-left: 50%;
+    width: 200px;
+    padding-bottom: 5px;
+    background-color: whitesmoke;
+    border-radius: 50px;
+    text-align: center;
+}
+.comment_button > a {
+    font-size: x-large;
+    text-decoration: none;
+    color: black;
+}
