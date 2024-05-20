@@ -9,6 +9,19 @@ header {
     width: 90%;
     height: 10%;
 }
+section {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    float: right;
+    width: 90%;
+    height: 80%;
+}
+footer {
+    float: right;
+    width: 90%;
+    height: 10%;
+}
 nav {
     position: fixed;
     float: left;
@@ -42,19 +55,6 @@ nav:hover{
     float: left;
     width: 150px;
     height: 100%;
-}
-section {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    float: right;
-    width: 90%;
-    height: 80%;
-}
-footer {
-    float: right;
-    width: 90%;
-    height: 10%;
 }
 #recommend {
     height: 100%;

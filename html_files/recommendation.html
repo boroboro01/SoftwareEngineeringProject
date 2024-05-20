@@ -24,11 +24,32 @@
         #second.hide {
             display: none;
             opacity: 0;
+            transition: 1s ease-in-out;
+        }
+        #third {
+            display: flex;
+            opacity: 1;
+            transition: 1s ease-in-out;
+        }
+        #third.hide {
+            display: none;
+            opacity: 0;
+            transition: 1s ease-in-out;
+        }
+        header {
+            float: right;
+            width: 90vw;
+            height: 10%;
         }
         section {
             width: 100vw;
+            height: 75%;
             background: linear-gradient(#272122, #0d1423);
             display: flex;
+        }
+        footer {
+            width: 80vw;
+            height: 15%;
         }
          .card {
             margin: 50px;
@@ -76,12 +97,15 @@
             color: #fff;
         }
         .image-list {
-            height: 80%;
+            display: flex;
+            height: 90%;
             width: 300px;
+            align-items: center;
             overflow: hidden;
         }
         .image-list .pick-image {
             margin-top: 5px;
+            margin-left: 5px;
             width: 20%;
         }
     </style>
@@ -155,22 +179,65 @@
         </div>
 
         <div id="second" class="hide">
-            <div class="card" id="romance">
+            <div class="card" id="80s">
                 <div class="poster">
                     <div class="sizedbox_small">
                     </div>
-                    <img src="../Assets/Images/Vectors/renai3_young.png">
+                    <img src="../Assets/Images/Vectors/radio_shinkuukan.png">
                 </div>
                 <div class="title">
-                    <span>Romance</span>
+                    <span>80s</span>
                 </div>
             </div>
-            <div class="card"  id="action">
+            <div class="card" id="90s">
                 <div class="poster">
-                    <img src="../Assets/Images/Vectors/job_spy.png">
+                    <div class="sizedbox_small">
+                    </div>
+                    <img src="../Assets/Images/Vectors/syouwa_tv_old.png">
                 </div>
                 <div class="title">
-                    <span>Action</span>
+                    <span>90s</span>
+                </div>
+            </div>
+            <div class="card" id="00s">
+                <div class="poster">
+                    <div class="sizedbox_small">
+                    </div>
+                    <img src="../Assets/Images/Vectors/kaden_buraunkan_tv.png">
+                </div>
+                <div class="title">
+                    <span>00s</span>
+                </div>
+            </div>
+            <div class="card"  id="10s">
+                <div class="poster">
+                    <img src="../Assets/Images/Vectors/tv_screen_black.png">
+                </div>
+                <div class="title">
+                    <span>10s</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="third" class="hide">
+            <div class="card" id="rating">
+                <div class="poster">
+                    <div class="sizedbox_small">
+                    </div>
+                    <img src="../Assets/Images/Vectors/small_star7_yellow.png">
+                </div>
+                <div class="title">
+                    <span>Ratings</span>
+                </div>
+            </div>
+            <div class="card" id="comment">
+                <div class="poster">
+                    <div class="sizedbox_small">
+                    </div>
+                    <img src="../Assets/Images/Vectors/pose_souzou_man.png">
+                </div>
+                <div class="title">
+                    <span>Comments</span>
                 </div>
             </div>
         </div>
@@ -187,6 +254,8 @@
 </body>
 <script>
     let recommendation = [];
+
+    //First
     document.getElementById("romance").addEventListener("click", function() {
         recommendation.push("Romance");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/renai3_young.png"
@@ -199,14 +268,91 @@
      document.getElementById("action").addEventListener("click", function() {
         recommendation.push("Action");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/job_spy.png"
+        document.getElementById("first").classList.toggle('hide');
+        setTimeout(function(){
+            document.getElementById("first").style.display = 'none';
+            document.getElementById("second").classList.toggle('hide');
+        }, 1000);
      })
      document.getElementById("comedy").addEventListener("click", function() {
         recommendation.push("Comedy");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/animal_music_band.png"
+        document.getElementById("first").classList.toggle('hide');
+        setTimeout(function(){
+            document.getElementById("first").style.display = 'none';
+            document.getElementById("second").classList.toggle('hide');
+        }, 1000);
      })
      document.getElementById("animation").addEventListener("click", function() {
         recommendation.push("Animation");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/kyodai_robot.png"
+        document.getElementById("first").classList.toggle('hide');
+        setTimeout(function(){
+            document.getElementById("first").style.display = 'none';
+            document.getElementById("second").classList.toggle('hide');
+        }, 1000);
+     })
+
+     //Second
+     document.getElementById("80s").addEventListener("click", function() {
+        recommendation.push("80s");
+        document.getElementById("pick2").src = "../Assets/Images/Vectors/radio_shinkuukan.png"
+        document.getElementById("second").style.display = 'flex';
+        document.getElementById("second").classList.toggle('hide');
+        setTimeout(function(){
+            document.getElementById("second").style.display = 'none';
+            document.getElementById("third").classList.toggle('hide');
+        }, 1000);
+     })
+     document.getElementById("90s").addEventListener("click", function() {
+        recommendation.push("90s");
+        document.getElementById("pick2").src = "../Assets/Images/Vectors/syouwa_tv_old.png"
+        document.getElementById("second").style.display = 'flex';
+        document.getElementById("second").classList.toggle('hide');
+        setTimeout(function(){
+            document.getElementById("second").style.display = 'none';
+            document.getElementById("third").classList.toggle('hide');
+        }, 1000);
+     })
+     document.getElementById("00s").addEventListener("click", function() {
+        recommendation.push("00s");
+        document.getElementById("pick2").src = "../Assets/Images/Vectors/kaden_buraunkan_tv.png"
+        document.getElementById("second").style.display = 'flex';
+        document.getElementById("second").classList.toggle('hide');
+        setTimeout(function(){
+            document.getElementById("second").style.display = 'none';
+            document.getElementById("third").classList.toggle('hide');
+        }, 1000);
+     })
+     document.getElementById("10s").addEventListener("click", function() {
+        recommendation.push("10s");
+        document.getElementById("pick2").src = "../Assets/Images/Vectors/tv_screen_black.png"
+        document.getElementById("second").style.display = 'flex';
+        document.getElementById("second").classList.toggle('hide');
+        setTimeout(function(){
+            document.getElementById("second").style.display = 'none';
+            document.getElementById("third").classList.toggle('hide');
+        }, 1000);
+     })
+
+     //Third
+     document.getElementById("rating").addEventListener("click", function() {
+        recommendation.push("rating");
+        document.getElementById("pick3").src = "../Assets/Images/Vectors/small_star7_yellow.png"
+        document.getElementById("third").style.display = 'flex';
+        document.getElementById("third").classList.toggle('hide');
+        setTimeout(function(){
+            document.getElementById("third").style.display = 'none';
+        }, 1000);
+     })
+     document.getElementById("comment").addEventListener("click", function() {
+        recommendation.push("comment");
+        document.getElementById("pick3").src = "../Assets/Images/Vectors/pose_souzou_man.png"
+        document.getElementById("third").style.display = 'flex';
+        document.getElementById("third").classList.toggle('hide');
+        setTimeout(function(){
+            document.getElementById("third").style.display = 'none';
+        }, 1000);
      })
 </script>
 
