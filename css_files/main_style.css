@@ -99,6 +99,8 @@ nav > ul > li {
 @keyframes imagerotation { 
 }
 
+/*추천 패널*/
+
 #panel {
     display: block;
     position: absolute;
@@ -155,9 +157,12 @@ nav > ul > li {
 
 .comment {
     height: 100px;
+    font-size: large;
 }
 
 .comment_button {
+    margin-top: 50px;
+    margin-left: 50%;
     width: 200px;
     padding-bottom: 5px;
     background-color: whitesmoke;
@@ -168,8 +173,4 @@ nav > ul > li {
     font-size: x-large;
     text-decoration: none;
     color: black;
-}
-
-.panel_bottom {
-    
 }
