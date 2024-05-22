@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <style>
+        html, body { margin: 0; padding: 0; height: 100%; }
+
+        body {
+            background-color: black;
+            height: 100%;
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            float: right;
+            width: 90%;
+            height: 10%;
+        }
+
+        nav {
+            margin: 0; padding: 0;
+            position: fixed;
+            float: left;
+            background-color: rgb(40, 40, 40);
+            width: 0%;
+            height: 100%;
+            transition: width 1s;
+        }
+
+        #menu_icon{
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+        .sidemenu {
+            height: 50px;
+            overflow: hidden;
+        }
+        .sidemenu > a {
+            white-space: nowrap;
+            text-decoration: none;
+            color: white;
+        }
+        .sidemenu>a:hover {
+            text-decoration:underline;
+            color: white;
+        }
+        nav:hover{
+            position: fixed;
+            background-color: rgb(40, 40, 40);
+            float: left;
+            width: 150px;
+            height: 100%;
+        }
+        .sizedbox_large {
+            height: 55%;
+        }
+
+        section {
+            padding: 10px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            float: right;
+            width: 90%;
+            height: 80%;
+        }
+
+        .infobox{
+            width: 100%;
+            height: 100px;
+
+        }
+
+        .btnbox {
+        }
+
+        .rating {
+            display: inline-block;
+        }
+
+        .Taging {
+            display: inline-block;
+            padding-left: 50px;
+        }
+
+        .btn {
+            padding-top: 10px;
+            text-align: center;
+            width: 150px;
+            height: 36px;
+            background-color: white;
+            display: block;
+            text-decoration: none;
+            color: black;
+            border-radius: 20px;
+        }
+
+        .back_btn {
+            display: inline-block;
+        }
+
+        .add_btn {
+            display: inline-block;
+        }
+
+        @keyframes imagerotation { 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> . htmlspecialchars($movie['title']) .영화 제목 </h1>
+    </header>
+    <nav>
+        <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
+        <ul>
+            <li class="sidemenu"><a href="./main.html">Trending</a></li>
+            <li class="sidemenu"><a href="http://">Favorite</a></li>
+            <li class="sidemenu"><a href="http://">History</a></li>
+            <div id="movieList_a" class="sidemenu">
+                <a href="../php_files/movieList.php">Movie List</a>
+            </div>
+        </ul>
+        <div class="sizedbox_large"></div>
+            <ul>
+                <li class="sidemenu" id="login_a">
+                    <a href="./login.html">Log in</a>
+                </li>
+                <li class="sidemenu" id="register_a">
+                    <a href="./register.html">Register</a>
+                </li>
+            </ul> 
+    </nav>
+    <section>
+        <div class="infobox">
+            <p class="rating">Average Rating: " . round($movie['average_rating'], 2) . 평점?</p>
+            <p class="Taging">Tags: ";
+                while ($tag = $tagsResult->fetch_assoc()) {
+                    echo htmlspecialchars($tag['tag']) . " ";
+                }
+            </p>
+        </div>
+        <div class="btnbox">
+            <a href='../html_files/movieComment.php?movieId=" . $movieId . "' class="btn add_btn">Add rating and tag</a>
+            <a href='movieList.php' class="btn back_btn">Back to Movie List</a>        
+        </div>
+    </section>
+</body>
+</html>

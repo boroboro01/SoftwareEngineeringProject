@@ -6,132 +6,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main</title>
+    <link rel="stylesheet" href="../css_files/main_style.css">
     <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
-        body>div {
-            background-color: black;
-            height: 100%;
-            color: white;
-        }
-
-        header {
-            float: right;
-            width: 90%;
-            height: 10%;
-        }
-
-        nav {
-            position: fixed;
-            float: left;
-            background-color: rgb(40, 40, 40);
-            width: 0%;
-            height: 100%;
-            transition: width 1s;
-        }
-
-        #menu_icon {
-            background-color: white;
-            /*메뉴 아이콘 안보여서 임시 배경색 설정*/
-            width: 40px;
-            height: 40px;
-            margin-left: 10px;
-            margin-top: 10px;
-        }
-
-        .sidemenu {
-            height: 50px;
-            overflow: hidden;
-        }
-
-        .sidemenu>a {
-            white-space: nowrap;
-            text-decoration: none;
-            color: white;
-        }
-
-        .sidemenu>a:hover {
-            text-decoration: underline;
-            color: white;
-        }
-
-        #login_a {
-            margin-left: 40px;
-            bottom: 10px;
-        }
-
-        nav:hover {
-            position: fixed;
-            background-color: rgb(40, 40, 40);
-            float: left;
-            width: 150px;
-            height: 100%;
-        }
-
-        section {
+        .movie-container {
+            display: flex;
             justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .movie {
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .movie img {
+            width: 150px;
+            height: 225px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .movie h3 {
+            font-size: 1.5em;
             text-align: center;
-            float: right;
-            width: 90%;
-            height: 80%;
         }
 
-        footer {
-            float: right;
-            width: 90%;
-            height: 10%;
-        }
-
-        #recommend {
-            height: 100%;
-        }
-
-        div.recommend_box {
-            height: 660px;
-        }
-
-        h1.title {
-            color: aqua;
+        .movie p {
+            font-size: 1.2em;
             text-align: center;
-            margin: 0;
-            margin-top: 10px;
-            padding: 0;
         }
 
-        h2.subtitle {
-            margin-top: 0;
-            padding: 0;
+        #trendButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1.2em;
         }
-
-        article {
-            width: 100%;
-        }
-
-        hr.footer_bar {
-            width: 95%;
-            color: grey;
-        }
-
-        #recommending {
-            position: absolute;
-            float: right;
-            bottom: 0;
-            right: 0;
-            height: 15%;
-        }
-
-        #register_a {
-            margin-left: 40px;
-            bottom: 10px;
-        }
-
-        @keyframes imagerotation {}
     </style>
 </head>
 
@@ -143,7 +57,6 @@
         <nav>
             <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
             <ul>
-                <li class="sidemenu"><a href="./main.html">Trending</a></li>
                 <li class="sidemenu"><a href="../php_files/favorite.php">Favorite</a></li>
                 <li class="sidemenu"><a href="../php_files/history.php">History</a></li>
                 <div id="movieList_a" class="sidemenu">
@@ -169,17 +82,47 @@
         <section>
             <article>
                 <h2 class="subtitle">Treding</h2>
-                <div class="recommend_box">
-                    <a href=""><img src="../Assets/Images/Posters/elemental.webp" alt="영화 포스터" id="recommend"></a>
+                <button id="trendButton">Show Trending Movies</button>
+                <div id="trendingMovies" class="movie-container"></div>
 
-                </div>
-            </article>
-        </section>
-        <footer>
-            <hr class="footer_bar">
-            <a href=""><img src="../Assets/Images/Vectors/magnifier_animal_inu.png" alt="영화 추천 받기"
-                    id="recommending"></a>
-        </footer>
+                <script>
+                    document.getElementById('trendButton').addEventListener('click', function () {
+                        fetch('trendingMovies.php')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    var trendingMoviesDiv = document.getElementById('trendingMovies');
+                                    trendingMoviesDiv.innerHTML = ''; // 기존 내용을 지움
+
+                                    data.movies.forEach(movie => {
+                                        var movieDiv = document.createElement('div');
+                                        movieDiv.classList.add('movie');
+                                        movieDiv.innerHTML = `
+                                <h3>${movie.title}</h3>
+                                <img src='../Assets/Images/Posters/${movie.movieId}.jpg' alt='${movie.title} Poster'>
+                                <p>Average Rating: ${movie.average_rating}</p>
+                                <p>Rating Count: ${movie.rating_count}</p>
+                            `;
+                                        trendingMoviesDiv.appendChild(movieDiv);
+                                    });
+                                } else {
+                                    alert('Failed to load trending movies: ' + data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error fetching trending movies:', error);
+                            });
+                    });
+                </script>
+
+    </div>
+    </article>
+    </section>
+    <footer>
+        <hr class="footer_bar">
+        <a href="recommend.php"><img src="../Assets/Images/Vectors/magnifier_animal_inu.png" alt="영화 추천 받기"
+                id="recommending"></a>
+    </footer>
     </div>
 </body>
 
