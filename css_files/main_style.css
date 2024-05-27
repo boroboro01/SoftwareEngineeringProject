@@ -9,6 +9,19 @@ header {
     width: 90%;
     height: 10%;
 }
+section {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    float: right;
+    width: 90%;
+    height: 80%;
+}
+footer {
+    float: right;
+    width: 90%;
+    height: 10%;
+}
 nav {
     position: fixed;
     float: left;
@@ -43,19 +56,6 @@ nav:hover{
     width: 150px;
     height: 100%;
 }
-section {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    float: right;
-    width: 90%;
-    height: 80%;
-}
-footer {
-    float: right;
-    width: 90%;
-    height: 10%;
-}
 #recommend {
     height: 100%;
 }
@@ -75,6 +75,7 @@ h2.subtitle {
 }
 article {
     width: 100%;
+    height: 100%;
 }
 hr.footer_bar {
     width: 95%;
@@ -84,15 +85,10 @@ hr.footer_bar {
     height: 50px;
 }
 .sizedbox_large {
-    height: 55%;
+    height: 60%;
 }
 nav > ul > li {
     list-style-type: none;
-}
-.login_conatiner {
-    color: white;
-    height: auto;
-    width: auto;
 }
 #recommending {
     position: absolute;
