@@ -43,3 +43,9 @@ CREATE TABLE favorites (
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (movie_id) REFERENCES movies(movieId)
 );
+
+CREATE TABLE movie_descriptions (
+    movie_id INT PRIMARY KEY,
+    description TEXT NOT NULL,
+    FOREIGN KEY (movie_id) REFERENCES movies(movieId)
+);
