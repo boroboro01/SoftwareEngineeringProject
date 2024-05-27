@@ -5,7 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie List</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css_files/movie_card.css">
     <link rel="stylesheet" href="../css_files/main_style.css">
     <style>
@@ -134,7 +136,6 @@ td {
             </div>
         </nav>
 
-
     <?php
     $servername = "127.0.0.1";
     $username = "root";
@@ -212,10 +213,10 @@ td {
         while ($row = $result->fetch_assoc()) {
             echo "
                     <td class='title'>
-     <div class='card'>
+    <div class='card'>
         <div class='poster'>
             <img src='../Assets/Images/Posters/" . $row['movieId'] . ".jpg' alt='" .
-                htmlspecialchars($movie['title']) . " Poster'>
+                htmlspecialchars($row['title']) . " Poster'>
         </div>
         <div class='details'>
 
@@ -243,9 +244,8 @@ td {
             //     </p>
             // </div>
         echo"
-
             <div class='tags'>
-                <span>". htmlspecialchars($row["genres"]) ."</span>
+                <span>" . htmlspecialchars($row["genres"]) . "</span>
             </div>
             
             <div class='comment'>
@@ -287,6 +287,7 @@ td {
     </div>
                         
                     </td>";
+
         }
         echo "
                 </tr>
@@ -309,56 +310,56 @@ td {
 
     $conn->close();
     ?>
-    
+
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-            var favoriteLinks = document.querySelectorAll('.favorite-toggle');
+        var favoriteLinks = document.querySelectorAll('.favorite-toggle');
 
-            favoriteLinks.forEach(function (link) {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    var movieId = this.getAttribute('data-movie-id');
-                    var favorited = this.getAttribute('data-favorited')
-                    var isFavorited = favorited === '1';
+        favoriteLinks.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                var movieId = this.getAttribute('data-movie-id');
+                var favorited = this.getAttribute('data-favorited')
+                var isFavorited = favorited === '1';
 
-                    fetch('favoriteHandler.php?movieId=' + movieId + '&favorited=' + favorited)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.success) {
-                                // 좋아요 상태에 따라 아이콘 변경
-                                if (isFavorited) {
-                                    this.innerHTML = '<i class="fa-regular fa-heart"></i>'; // 빈 하트
-                                    this.setAttribute('data-favorited', '0');
-                                    alert('Favorite removed'); // 추가: 제거 성공 메시지
-                                } else {
-                                    this.innerHTML = '<i class="fa-solid fa-heart"></i>'; // 꽉 찬 하트
-                                    this.setAttribute('data-favorited', '1');
-                                    alert('Favorite added'); // 추가: 추가 성공 메시지
-                                }
+                fetch('favoriteHandler.php?movieId=' + movieId + '&favorited=' + favorited)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            // 좋아요 상태에 따라 아이콘 변경
+                            if (isFavorited) {
+                                this.innerHTML = '<i class="fa-regular fa-heart"></i>'; // 빈 하트
+                                this.setAttribute('data-favorited', '0');
+                                alert('Favorite removed'); // 추가: 제거 성공 메시지
                             } else {
-                                alert('Error toggling favorite: ' + data.message); // 실패 메시지
+                                this.innerHTML = '<i class="fa-solid fa-heart"></i>'; // 꽉 찬 하트
+                                this.setAttribute('data-favorited', '1');
+                                alert('Favorite added'); // 추가: 추가 성공 메시지
                             }
-                        })
-                        .catch(error => {
-                            console.error('There was a problem with the fetch operation:', error.message);
-                        });
-                });
+                        } else {
+                            alert('Error toggling favorite: ' + data.message); // 실패 메시지
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error.message);
+                    });
             });
         });
+    });
 
-        //scroll horizontal
-        const scrollContainer = document.querySelector(".container");
+    //scroll horizontal
+    const scrollContainer = document.querySelector(".container");
 
-scrollContainer.addEventListener("wheel", (evt) => {
-    evt.preventDefault();
-    scrollContainer.scrollLeft += evt.deltaY;
-});
+    scrollContainer.addEventListener("wheel", (evt) => {
+        evt.preventDefault();
+        scrollContainer.scrollLeft += evt.deltaY;
+    });
 
 </script>
 

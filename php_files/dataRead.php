@@ -11,10 +11,13 @@ if ($conn->connect_error) {
 }
 
 // CSV 파일 열기
+$skip_rows = 30000;
 // $handle = fopen("../data_files/movies.csv", "r");
 // if ($handle !== FALSE) {
-//     // 첫 번째 라인 (헤더) 읽기 및 무시
-//     fgetcsv($handle, 1000, ",");
+//     // 특정 행까지 파일 포인터 이동
+//     for ($i = 0; $i < $skip_rows; $i++) {
+//         fgets($handle);
+//     }
 
 //     // 라인별로 읽기
 //     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
@@ -31,9 +34,12 @@ if ($conn->connect_error) {
 //     fclose($handle);
 // }
 
+
 $handle = fopen("../data_files/ratings.csv", "r");
 if ($handle !== FALSE) {
-    fgetcsv($handle);  // 헤더 스킵
+    for ($i = 0; $i < $skip_rows; $i++) {
+        fgets($handle);
+    }
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
         $userId = $data[0];
         $movieId = $data[1];
@@ -47,21 +53,26 @@ if ($handle !== FALSE) {
     fclose($handle);
 }
 
-$handle = fopen("../data_files/tags.csv", "r");
-if ($handle !== FALSE) {
-    fgetcsv($handle);  // 헤더 스킵
-    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-        $userId = $data[0];
-        $movieId = $data[1];
-        $tag = addslashes($data[2]);
-        $timestamp = $data[3];
-        $sql = "INSERT INTO tags (userId, movieId, tag, timestamp) VALUES ('$userId', '$movieId', '$tag', '$timestamp')";
-        if (!$conn->query($sql)) {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-    }
-    fclose($handle);
-}
+
+// $handle = fopen("../data_files/tags.csv", "r");
+// if ($handle !== FALSE) {
+
+//     for ($i = 0; $i < $skip_rows; $i++) {
+//         fgets($handle);
+//     }
+
+//     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+//         $userId = $data[0];
+//         $movieId = $data[1];
+//         $tag = addslashes($data[2]);
+//         $timestamp = $data[3];
+//         $sql = "INSERT INTO tags (userId, movieId, tag, timestamp) VALUES ('$userId', '$movieId', '$tag', '$timestamp')";
+//         if (!$conn->query($sql)) {
+//             echo "Error: " . $sql . "<br>" . $conn->error;
+//         }
+//     }
+//     fclose($handle);
+// }
 // 데이터베이스 연결 닫기
 $conn->close();
 ?>
