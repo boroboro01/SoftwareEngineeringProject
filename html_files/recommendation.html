@@ -12,90 +12,108 @@
             opacity: 1;
             transition: 1s ease-in-out;
         }
+
         #first.hide {
             display: flex;
             opacity: 0;
         }
+
         #second {
             display: flex;
             opacity: 1;
             transition: 1s ease-in-out;
         }
+
         #second.hide {
             display: none;
             opacity: 0;
             transition: 1s ease-in-out;
         }
+
         #third {
             display: flex;
             opacity: 1;
             transition: 1s ease-in-out;
         }
+
         #third.hide {
             display: none;
             opacity: 0;
             transition: 1s ease-in-out;
         }
+
         header {
             float: right;
             width: 90vw;
             height: 10%;
         }
+
         section {
             width: 100vw;
             height: 75%;
             background: linear-gradient(#272122, #0d1423);
             display: flex;
         }
+
         footer {
             width: 80vw;
             height: 15%;
         }
-         .card {
+
+        .card {
             margin: 50px;
             position: relative;
             width: 10vw;
             height: 320px;
             background: linear-gradient(0deg, #0d1423, 50%, transparent);
             border-radius: 20px;
-            overflow:hidden;
+            overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 25);
             transition: 1s;
             cursor: pointer;
         }
+
         .card:hover {
             width: 11vw;
             background: linear-gradient(0deg, #050b18, 10%, transparent);
         }
+
         .card:hover .title span {
             font-size: 40px;
         }
+
         .card:active {
             width: 9vw;
         }
+
         .card .poster {
             position: absolute;
             width: 100%;
             height: 100%;
         }
+
         .card .poster img {
             margin-top: 25px;
             width: 80%;
             transition: 1s;
         }
+
         .card .title {
             position: absolute;
             width: 100%;
             margin-top: 230px;
         }
-        .card .title span{
+
+        .card .title span {
             font-size: 35px;
             color: #fff;
             transition: 1s;
         }
+
         .pick-text {
             color: #fff;
         }
+
         .image-list {
             display: flex;
             height: 90%;
@@ -103,6 +121,7 @@
             align-items: center;
             overflow: hidden;
         }
+
         .image-list .pick-image {
             margin-top: 5px;
             margin-left: 5px;
@@ -119,128 +138,128 @@
         <nav>
             <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
             <ul>
-                <li class="sidemenu"><a href="./main.html">Trending</a></li>
-                <li class="sidemenu"><a href="http://">Favorite</a></li>
-                <li class="sidemenu"><a href="http://">History</a></li>
+                <li class="sidemenu"><a href="../php_files/main.php">Home</a></li>
+                <li class="sidemenu"><a href="../php_files/favorite.php">Favorite</a></li>
+                <li class="sidemenu"><a href="../php_files/history.php">History</a></li>
                 <div id="movieList_a" class="sidemenu">
                     <a href="../php_files/movieList.php">Movie List</a>
                 </div>
             </ul>
             <div class="sizedbox_large"></div>
-                <ul>
-                    <li class="sidemenu" id="login_a">
-                        <a href="./login.html">Log in</a>
-                    </li>
-                    <li class="sidemenu" id="register_a">
-                        <a href="./register.html">Register</a>
-                    </li>
-                </ul> 
+            <ul>
+                <li class="sidemenu" id="login_a">
+                    <a href="./login.html">Log in</a>
+                </li>
+                <li class="sidemenu" id="register_a">
+                    <a href="./register.html">Register</a>
+                </li>
+            </ul>
         </nav>
         <section>
-        <div id="first">
-            <div class="card" id="romance">
-                <div class="poster">
-                    <div class="sizedbox_small">
+            <div id="first">
+                <div class="card" id="romance">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/renai3_young.png">
                     </div>
-                    <img src="../Assets/Images/Vectors/renai3_young.png">
-                </div>
-                <div class="title">
-                    <span>Romance</span>
-                </div>
-            </div>
-            <div class="card"  id="action">
-                <div class="poster">
-                    <img src="../Assets/Images/Vectors/job_spy.png">
-                </div>
-                <div class="title">
-                    <span>Action</span>
-                </div>
-            </div>
-            <div class="card"  id="comedy">
-                <div class="poster">
-                    <div class="sizedbox">
+                    <div class="title">
+                        <span>Romance</span>
                     </div>
-                    <img src="../Assets/Images/Vectors/animal_music_band.png">
                 </div>
-                <div class="title">
-                    <span>Comedy</span>
-                </div>
-            </div>
-            <div class="card"  id="animation">
-                <div class="poster">
-                    <div class="sizedbox_small">
+                <div class="card" id="action">
+                    <div class="poster">
+                        <img src="../Assets/Images/Vectors/job_spy.png">
                     </div>
-                    <img src="../Assets/Images/Vectors/kyodai_robot.png">
+                    <div class="title">
+                        <span>Action</span>
+                    </div>
                 </div>
-                <div class="title">
-                    <span>Animation</span>
+                <div class="card" id="comedy">
+                    <div class="poster">
+                        <div class="sizedbox">
+                        </div>
+                        <img src="../Assets/Images/Vectors/animal_music_band.png">
+                    </div>
+                    <div class="title">
+                        <span>Comedy</span>
+                    </div>
+                </div>
+                <div class="card" id="animation">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/kyodai_robot.png">
+                    </div>
+                    <div class="title">
+                        <span>Animation</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="second" class="hide">
-            <div class="card" id="80s">
-                <div class="poster">
-                    <div class="sizedbox_small">
+            <div id="second" class="hide">
+                <div class="card" id="80s">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/radio_shinkuukan.png">
                     </div>
-                    <img src="../Assets/Images/Vectors/radio_shinkuukan.png">
-                </div>
-                <div class="title">
-                    <span>80s</span>
-                </div>
-            </div>
-            <div class="card" id="90s">
-                <div class="poster">
-                    <div class="sizedbox_small">
+                    <div class="title">
+                        <span>80s</span>
                     </div>
-                    <img src="../Assets/Images/Vectors/syouwa_tv_old.png">
                 </div>
-                <div class="title">
-                    <span>90s</span>
-                </div>
-            </div>
-            <div class="card" id="00s">
-                <div class="poster">
-                    <div class="sizedbox_small">
+                <div class="card" id="90s">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/syouwa_tv_old.png">
                     </div>
-                    <img src="../Assets/Images/Vectors/kaden_buraunkan_tv.png">
+                    <div class="title">
+                        <span>90s</span>
+                    </div>
                 </div>
-                <div class="title">
-                    <span>00s</span>
+                <div class="card" id="00s">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/kaden_buraunkan_tv.png">
+                    </div>
+                    <div class="title">
+                        <span>00s</span>
+                    </div>
+                </div>
+                <div class="card" id="10s">
+                    <div class="poster">
+                        <img src="../Assets/Images/Vectors/tv_screen_black.png">
+                    </div>
+                    <div class="title">
+                        <span>10s</span>
+                    </div>
                 </div>
             </div>
-            <div class="card"  id="10s">
-                <div class="poster">
-                    <img src="../Assets/Images/Vectors/tv_screen_black.png">
-                </div>
-                <div class="title">
-                    <span>10s</span>
-                </div>
-            </div>
-        </div>
 
-        <div id="third" class="hide">
-            <div class="card" id="rating">
-                <div class="poster">
-                    <div class="sizedbox_small">
+            <div id="third" class="hide">
+                <div class="card" id="rating">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/small_star7_yellow.png">
                     </div>
-                    <img src="../Assets/Images/Vectors/small_star7_yellow.png">
+                    <div class="title">
+                        <span>Ratings</span>
+                    </div>
                 </div>
-                <div class="title">
-                    <span>Ratings</span>
+                <div class="card" id="comment">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/pose_souzou_man.png">
+                    </div>
+                    <div class="title">
+                        <span>Comments</span>
+                    </div>
                 </div>
             </div>
-            <div class="card" id="comment">
-                <div class="poster">
-                    <div class="sizedbox_small">
-                    </div>
-                    <img src="../Assets/Images/Vectors/pose_souzou_man.png">
-                </div>
-                <div class="title">
-                    <span>Comments</span>
-                </div>
-            </div>
-        </div>
         </section>
         <footer>
             <span class="pick-text">What you pick</span>
@@ -256,104 +275,117 @@
     let recommendation = [];
 
     //First
-    document.getElementById("romance").addEventListener("click", function() {
+    document.getElementById("romance").addEventListener("click", function () {
         recommendation.push("Romance");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/renai3_young.png"
         document.getElementById("first").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("action").addEventListener("click", function() {
+    });
+    document.getElementById("action").addEventListener("click", function () {
         recommendation.push("Action");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/job_spy.png"
         document.getElementById("first").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("comedy").addEventListener("click", function() {
+    });
+    document.getElementById("comedy").addEventListener("click", function () {
         recommendation.push("Comedy");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/animal_music_band.png"
         document.getElementById("first").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("animation").addEventListener("click", function() {
+    });
+    document.getElementById("animation").addEventListener("click", function () {
         recommendation.push("Animation");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/kyodai_robot.png"
         document.getElementById("first").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-     })
+    });
 
-     //Second
-     document.getElementById("80s").addEventListener("click", function() {
-        recommendation.push("80s");
+    //Second
+    document.getElementById("80s").addEventListener("click", function () {
+        recommendation.push("1980");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/radio_shinkuukan.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("90s").addEventListener("click", function() {
-        recommendation.push("90s");
+    });
+    document.getElementById("90s").addEventListener("click", function () {
+        recommendation.push("1990");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/syouwa_tv_old.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("00s").addEventListener("click", function() {
-        recommendation.push("00s");
+    });
+    document.getElementById("00s").addEventListener("click", function () {
+        recommendation.push("2000");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/kaden_buraunkan_tv.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("10s").addEventListener("click", function() {
-        recommendation.push("10s");
+    });
+    document.getElementById("10s").addEventListener("click", function () {
+        recommendation.push("2010");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/tv_screen_black.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-     })
+    });
 
-     //Third
-     document.getElementById("rating").addEventListener("click", function() {
+    //Third
+    document.getElementById("rating").addEventListener("click", function () {
         recommendation.push("rating");
         document.getElementById("pick3").src = "../Assets/Images/Vectors/small_star7_yellow.png"
         document.getElementById("third").style.display = 'flex';
         document.getElementById("third").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("third").style.display = 'none';
+            sendRecommendation("rating"); // send recommendation data with type 'rating'
         }, 1000);
-     })
-     document.getElementById("comment").addEventListener("click", function() {
+    });
+    document.getElementById("comment").addEventListener("click", function () {
         recommendation.push("comment");
         document.getElementById("pick3").src = "../Assets/Images/Vectors/pose_souzou_man.png"
         document.getElementById("third").style.display = 'flex';
         document.getElementById("third").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("third").style.display = 'none';
+            sendRecommendation("comment"); // send recommendation data with type 'comment'
         }, 1000);
-     })
+    });
+
+    function sendRecommendation(type) {
+        // Construct query string
+        let queryString = "";
+        queryString += "genres=" + encodeURIComponent(recommendation[0]) + "&"
+            + "year=" + encodeURIComponent(recommendation[1]) + "&" + "third_data=" + encodeURIComponent(type);
+        // Send GET request
+        window.location.href = "../php_files/recommend.php?" + queryString;
+    }
 </script>
+
+
 
 </html>

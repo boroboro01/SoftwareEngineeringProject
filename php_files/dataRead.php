@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 }
 
 // CSV 파일 열기
-$skip_rows = 53500;
+$skip_rows = 59500;
 // $handle = fopen("../data_files/movies.csv", "r");
 // if ($handle !== FALSE) {
 //     // 특정 행까지 파일 포인터 이동

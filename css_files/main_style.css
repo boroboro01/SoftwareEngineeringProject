@@ -36,9 +36,16 @@ nav {
     margin-left: 10px;
     margin-top: 10px;
 }
+.sidebar {
+    margin-left: 15px;
+    margin-top: 15px;
+}
 .sidemenu {
     height: 50px;
     overflow: hidden;
+}
+.sidemenu ul {
+    left: 10px;
 }
 .sidemenu > a {
     white-space: nowrap;
