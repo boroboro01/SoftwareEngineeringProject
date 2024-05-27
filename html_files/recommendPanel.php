@@ -1,7 +1,11 @@
 <?php
 session_start();
 
-echo $_SESSION['best_movie_id'];
+
+echo $_SESSION['user_id'];
+echo $_SESSION['year'];
+
+// echo $_SESSION['best_movie_id'];
 
 // 데이터베이스 연결
 require_once '../php_files/db.php';
@@ -48,6 +52,8 @@ if (isset($_SESSION['best_movie_id'])) {
     // 연결 종료
     $conn->close();
 } else {
+    echo $_SESSION['genre'];
+    echo $_SESSION['year'];
     echo "No movie selected";
 }
 ?>
