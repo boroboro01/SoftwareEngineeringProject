@@ -185,7 +185,7 @@
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-    })
+    });
     document.getElementById("action").addEventListener("click", function () {
         recommendation.push("Action");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/job_spy.png"
@@ -194,7 +194,7 @@
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-    })
+    });
     document.getElementById("comedy").addEventListener("click", function () {
         recommendation.push("Comedy");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/animal_music_band.png"
@@ -203,7 +203,7 @@
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-    })
+    });
     document.getElementById("animation").addEventListener("click", function () {
         recommendation.push("Animation");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/kyodai_robot.png"
@@ -212,11 +212,11 @@
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-    })
+    });
 
     //Second
     document.getElementById("80s").addEventListener("click", function () {
-        recommendation.push("80s");
+        recommendation.push("1980");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/radio_shinkuukan.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
@@ -224,9 +224,9 @@
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-    })
+    });
     document.getElementById("90s").addEventListener("click", function () {
-        recommendation.push("90s");
+        recommendation.push("1990");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/syouwa_tv_old.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
@@ -234,9 +234,9 @@
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-    })
+    });
     document.getElementById("00s").addEventListener("click", function () {
-        recommendation.push("00s");
+        recommendation.push("2000");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/kaden_buraunkan_tv.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
@@ -244,9 +244,9 @@
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-    })
+    });
     document.getElementById("10s").addEventListener("click", function () {
-        recommendation.push("10s");
+        recommendation.push("2010");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/tv_screen_black.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
@@ -254,7 +254,7 @@
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-    })
+    });
 
     //Third
     document.getElementById("rating").addEventListener("click", function () {
@@ -265,12 +265,8 @@
         setTimeout(function () {
             document.getElementById("third").style.display = 'none';
             window.location.href = "recommendPane.html";
+  sendRecommendation("rating"); // send recommendation data with type 'rating'
         }, 1000);
-        const movieJson = {
-            genres: recommendation[0],
-            ages: recommendation[1],
-            orders: recommendation[2],
-        }
     })
     document.getElementById("comment").addEventListener("click", function () {
         recommendation.push("comment");
@@ -279,9 +275,21 @@
         document.getElementById("third").classList.toggle('hide');
         setTimeout(function () {
             document.getElementById("third").style.display = 'none';
+            sendRecommendation("comment"); // send recommendation data with type 'comment'
             window.location.href = "recommendPane.html";
         }, 1000);
-    })
+    });
+
+    function sendRecommendation(type) {
+        // Construct query string
+        let queryString = "";
+        queryString += "genres=" + encodeURIComponent(recommendation[0]) + "&"
+            + "year=" + encodeURIComponent(recommendation[1]) + "&" + "third_data=" + encodeURIComponent(type);
+        // Send GET request
+        window.location.href = "../php_files/recommend.php?" + queryString;
+    }
 </script>
+
+
 
 </html>
