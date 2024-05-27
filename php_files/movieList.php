@@ -5,108 +5,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie List</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css_files/movie_card.css">
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Dongle&family=M+PLUS+Rounded+1c&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dongle&family=M+PLUS+Rounded+1c&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
 
-.wrapper {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.container {
-    display: flex;
-    width: 80vw;
-    padding: 20px;
-    overflow-x: auto;
-}
-.container::-webkit-scrollbar {
-    display: none;
-}
+        .wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
-th,
-td {
-    padding: 20px;
-    text-align: left;
-}
-.pagination {
-    margin-top: 20px;
-}
+        .container {
+            display: flex;
+            width: 80vw;
+            padding: 20px;
+            overflow-x: auto;
+        }
 
-.pagination a {
-    margin: 0 5px;
-    padding: 5px 10px;
-    border: 1px solid black;
-    text-decoration: none;
-    color: white;
-}
+        .container::-webkit-scrollbar {
+            display: none;
+        }
 
-.pagination a.active {
-    background-color: #4CAF50;
-    color: black;
-}
+        th,
+        td {
+            padding: 20px;
+            text-align: left;
+        }
 
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
-}
+        .pagination {
+            margin-top: 20px;
+        }
 
-@keyframes imagerotation { 
-}
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: 1px solid black;
+            text-decoration: none;
+            color: white;
+        }
+
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: black;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+        @keyframes imagerotation {}
     </style>
 </head>
+
 <body>
-    <!-- <div class="card">
-        <div class="poster">
-            <img src="../Assets/Images/Posters/1.jpg">
-        </div>
-        <div class="details">
-            <img src="../Assets/Images/Logos/1.png" class="logo">
-            <div class="rating">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <span>4/5</span>
-            </div>
-            <div class="tags">
-                <span>Sci-fi</span>
-                <span>Comedy</span>
-            </div>
-            <div class="info">
-                <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-            </div>
-            <div class="comment">
-                <h4>Comment</h4>
-                <ul>
-                    <li>
-                        <i class="fa-regular fa-user"></i>
-                        <p>Integer nibh mauris, feugiat sagittis eleifend et, faucibus vel neque.</p>
-                    </li>
-                    <li>
-                        <i class="fa-regular fa-user"></i>
-                        <p>Phasellus tincidunt congue dignissim.</p>
-                    </li>
-                    <li><i class="fa-regular fa-user"></i></li>
-                </ul>
-            </div>
-        </div>
-    </div> -->
-
-
-
-
-
-
-
-
-
-    
     <?php
     $servername = "127.0.0.1";
     $username = "root";
@@ -143,28 +99,6 @@ td {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Raiting
-    
-    //Favorite
-    $userId = $_SESSION['user_id'];  // 사용자 ID를 세션에서 가져옵니다.
-        $favorited = 0;  // 기본적으로 좋아요가 되어있지 않다고 가정
-    
-        // 좋아요 상태를 확인하는 쿼리
-        $favQuery = "SELECT 1 FROM favorites WHERE user_id = ? AND movie_id = ?";
-        $favStmt = $conn->prepare($favQuery);
-        if ($favStmt === false) {
-            die("Prepare failed: " . htmlspecialchars($conn->error));
-        }
-        $favStmt->bind_param("ii", $userId, $movieId);
-        $favStmt->execute();
-        $favResult = $favStmt->get_result();
-        if ($favResult->fetch_assoc()) {
-            $favorited = 1;  // 좋아요 상태가 확인되면 변수를 1로 설정
-        } else {
-            echo"<p>favorite ". ($favorited) ."";
-        }
-        $favStmt->close();
-
     if ($result->num_rows > 0) {
         echo "
         <div class='wrapper'>
@@ -174,10 +108,10 @@ td {
         while ($row = $result->fetch_assoc()) {
             echo "
                     <td class='title'>
-     <div class='card'>
+    <div class='card'>
         <div class='poster'>
             <img src='../Assets/Images/Posters/" . $row['movieId'] . ".jpg' alt='" .
-                htmlspecialchars($movie['title']) . " Poster'>
+                htmlspecialchars($row['title']) . " Poster'>
         </div>
         <div class='details'>
             <img src='../Assets/Images/Logos/1.png' class='logo'>
@@ -187,10 +121,10 @@ td {
             <i class='fa-solid fa-star'></i>
             <i class='fa-solid fa-star'></i>
             <i class='fa-regular fa-star'></i>
-            <span>" . round($movie['average_rating'], 2) . "</span>
+            <span></span>
             </div>
             <div class='tags'>
-                <span>". htmlspecialchars($row["genres"]) ."</span>
+                <span>" . htmlspecialchars($row["genres"]) . "</span>
             </div>
             <div class='info'>
                 <p>
@@ -217,24 +151,16 @@ td {
                 </ul>
             </div>
             ";
-            
-            echo '
-            
-            <a href="#" class="favorite-toggle" data-movie-id="' . $row['movieId'] . '" data-favorited="' . $favorited . '">
-
-            <i class="' . ($favorited ? 'fa-solid' : 'fa-regular') . ' fa-heart"></i>
-            </a>
-
-            
-            ';
-            echo"
+            echo "
             
         </div>
     </div>
                         <a href='movieDetails.php?movieId=" . $row['movieId'] .
-                "'>" . htmlspecialchars($row["title"]) .  " 
+                "'>" . htmlspecialchars($row["title"]) . " 
                         </a>
+                        
                     </td>";
+
         }
         echo "
                 </tr>
@@ -257,56 +183,56 @@ td {
 
     $conn->close();
     ?>
-    
+
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-            var favoriteLinks = document.querySelectorAll('.favorite-toggle');
+        var favoriteLinks = document.querySelectorAll('.favorite-toggle');
 
-            favoriteLinks.forEach(function (link) {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    var movieId = this.getAttribute('data-movie-id');
-                    var favorited = this.getAttribute('data-favorited')
-                    var isFavorited = favorited === '1';
+        favoriteLinks.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                var movieId = this.getAttribute('data-movie-id');
+                var favorited = this.getAttribute('data-favorited')
+                var isFavorited = favorited === '1';
 
-                    fetch('favoriteHandler.php?movieId=' + movieId + '&favorited=' + favorited)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.success) {
-                                // 좋아요 상태에 따라 아이콘 변경
-                                if (isFavorited) {
-                                    this.innerHTML = '<i class="fa-regular fa-heart"></i>'; // 빈 하트
-                                    this.setAttribute('data-favorited', '0');
-                                    alert('Favorite removed'); // 추가: 제거 성공 메시지
-                                } else {
-                                    this.innerHTML = '<i class="fa-solid fa-heart"></i>'; // 꽉 찬 하트
-                                    this.setAttribute('data-favorited', '1');
-                                    alert('Favorite added'); // 추가: 추가 성공 메시지
-                                }
+                fetch('favoriteHandler.php?movieId=' + movieId + '&favorited=' + favorited)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            // 좋아요 상태에 따라 아이콘 변경
+                            if (isFavorited) {
+                                this.innerHTML = '<i class="fa-regular fa-heart"></i>'; // 빈 하트
+                                this.setAttribute('data-favorited', '0');
+                                alert('Favorite removed'); // 추가: 제거 성공 메시지
                             } else {
-                                alert('Error toggling favorite: ' + data.message); // 실패 메시지
+                                this.innerHTML = '<i class="fa-solid fa-heart"></i>'; // 꽉 찬 하트
+                                this.setAttribute('data-favorited', '1');
+                                alert('Favorite added'); // 추가: 추가 성공 메시지
                             }
-                        })
-                        .catch(error => {
-                            console.error('There was a problem with the fetch operation:', error.message);
-                        });
-                });
+                        } else {
+                            alert('Error toggling favorite: ' + data.message); // 실패 메시지
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error.message);
+                    });
             });
         });
+    });
 
-        //scroll horizontal
-        const scrollContainer = document.querySelector(".container");
+    //scroll horizontal
+    const scrollContainer = document.querySelector(".container");
 
-scrollContainer.addEventListener("wheel", (evt) => {
-    evt.preventDefault();
-    scrollContainer.scrollLeft += evt.deltaY;
-});
+    scrollContainer.addEventListener("wheel", (evt) => {
+        evt.preventDefault();
+        scrollContainer.scrollLeft += evt.deltaY;
+    });
 
 </script>
 
