@@ -11,63 +11,66 @@
     <link rel="stylesheet" href="../css_files/movie_card.css">
     <link rel="stylesheet" href="../css_files/main_style.css">
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Dongle&family=M+PLUS+Rounded+1c&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dongle&family=M+PLUS+Rounded+1c&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
 
-.wrapper {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.container {
-    display: flex;
-    width: 80vw;
-    padding: 20px;
-    overflow-x: auto;
-}
-.container::-webkit-scrollbar {
-    display: none;
-}
+        .wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
-.page-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 3em;
-}
+        .container {
+            display: flex;
+            width: 80vw;
+            padding: 20px;
+            overflow-x: auto;
+        }
 
-th,
-td {
-    padding: 20px;
-    text-align: left;
-}
-.pagination {
-    margin-top: 20px;
-}
+        .container::-webkit-scrollbar {
+            display: none;
+        }
 
-.pagination a {
-    margin: 0 5px;
-    padding: 5px 10px;
-    border: 1px solid black;
-    text-decoration: none;
-    color: white;
-}
+        .page-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 3em;
+        }
 
-.pagination a.active {
-    background-color: #4CAF50;
-    color: black;
-}
+        th,
+        td {
+            padding: 20px;
+            text-align: left;
+        }
 
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
-}
+        .pagination {
+            margin-top: 20px;
+        }
 
-@keyframes imagerotation { 
-}
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: 1px solid black;
+            text-decoration: none;
+            color: white;
+        }
+
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: black;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+        @keyframes imagerotation {}
     </style>
 </head>
+
 <body>
     <!-- <div class="card">
         <div class="poster">
@@ -109,8 +112,8 @@ td {
         </div>
     </div> -->
     <nav>
-            <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
-            <div class="sidebar">
+        <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
+        <div class="sidebar">
             <ul>
                 <li class="sidemenu"><a href="../php_files/favorite.php">Favorite</a></li>
                 <li class="sidemenu"><a href="../php_files/history.php">History</a></li>
@@ -133,8 +136,8 @@ td {
                     <a href="../html_files/register.html">Register</a>
                 </div>
             <?php endif; ?>
-            </div>
-        </nav>
+        </div>
+    </nav>
 
     <?php
     $servername = "127.0.0.1";
@@ -176,23 +179,23 @@ td {
     
     //Favorite
     $userId = $_SESSION['user_id'];  // 사용자 ID를 세션에서 가져옵니다.
-        $favorited = 0;  // 기본적으로 좋아요가 되어있지 않다고 가정
+    $favorited = 0;  // 기본적으로 좋아요가 되어있지 않다고 가정
     
-        // 좋아요 상태를 확인하는 쿼리
-        $favQuery = "SELECT 1 FROM favorites WHERE user_id = ? AND movie_id = ?";
-        $favStmt = $conn->prepare($favQuery);
-        if ($favStmt === false) {
-            die("Prepare failed: " . htmlspecialchars($conn->error));
-        }
-        $favStmt->bind_param("ii", $userId, $movieId);
-        $favStmt->execute();
-        $favResult = $favStmt->get_result();
-        if ($favResult->fetch_assoc()) {
-            $favorited = 1;  // 좋아요 상태가 확인되면 변수를 1로 설정
-        } else {
-            
-        }
-        $favStmt->close();
+    // 좋아요 상태를 확인하는 쿼리
+    $favQuery = "SELECT 1 FROM favorites WHERE user_id = ? AND movie_id = ?";
+    $favStmt = $conn->prepare($favQuery);
+    if ($favStmt === false) {
+        die("Prepare failed: " . htmlspecialchars($conn->error));
+    }
+    $favStmt->bind_param("ii", $userId, $movieId);
+    $favStmt->execute();
+    $favResult = $favStmt->get_result();
+    if ($favResult->fetch_assoc()) {
+        $favorited = 1;  // 좋아요 상태가 확인되면 변수를 1로 설정
+    } else {
+
+    }
+    $favStmt->close();
 
     if ($result->num_rows > 0) {
         echo '
@@ -222,13 +225,13 @@ td {
 
         ";
 
-        echo"
+            echo "
             <a href='movieDetails.php?movieId=" . $row['movieId'] .
                 "'>
-                <img src='../Assets/Images/Logos/" .$row['movieId'] . ".png' alt='"
-                 . htmlspecialchars($row["title"]) .  " Poster' class='logo'> 
+                <img src='../Assets/Images/Logos/" . $row['movieId'] . ".png' alt='"
+                . htmlspecialchars($row["title"]) . " Poster' class='logo'> 
                         
-                 </a>
+                </a>
             ";
             // <div class='rating'>
             // <i class='fa-solid fa-star'></i>
@@ -243,7 +246,7 @@ td {
             //     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             //     </p>
             // </div>
-        echo"
+            echo "
             <div class='tags'>
                 <span>" . htmlspecialchars($row["genres"]) . "</span>
             </div>
@@ -271,17 +274,17 @@ td {
             //     </ul>
             // </div>
             // ";
-            
+    
             // echo '
-            
+    
             // <a href="#" class="favorite-toggle" data-movie-id="' . $row['movieId'] . '" data-favorited="' . $favorited . '">
-
+    
             // <i class="' . ($favorited ? 'fa-solid' : 'fa-regular') . ' fa-heart"></i>
             // </a>
+    
 
-            
             // ';
-            echo"
+            echo "
             
         </div>
     </div>

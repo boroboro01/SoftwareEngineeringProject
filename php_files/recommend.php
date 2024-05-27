@@ -1,68 +1,69 @@
 <?php
 session_start();
+// 데이터베이스 연결
+require_once 'db.php';
 
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    echo json_encode(['success' => false, 'message' => 'User not logged in']);
-    exit;
-}
+// 추천된 장르 및 년도 받기
+$genre = $_POST['genre']; // 추천된 장르
+$year = $_POST['year']; // 추천된 년도
 
-$userId = $_SESSION['user_id'];
+// SQL 쿼리 작성
+$sql = "SELECT * FROM movies WHERE genre = '$genre' AND year = '$year'";
 
-require_once 'db.php'; // 데이터베이스 연결 스크립트
+// 쿼리 실행
+$result = $conn->query($sql);
 
-// 사용자가 좋아요 누른 영화 중 가장 많이 나온 장르의 영화
-$sql = "SELECT m.genres, COUNT(*) AS genre_count
-        FROM favorites f
-        JOIN movies m ON f.movie_id = m.movieId
-        WHERE f.user_id = ?
-        GROUP BY m.genres
-        ORDER BY genre_count DESC
-        LIMIT 1";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $userId);
-$stmt->execute();
-$result = $stmt->get_result();
-
+// 결과 처리
 if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $mostPopularGenre = $row['genres'];
+    // 결과를 배열로 변환하여 반환
+    $movies = array();
+    while ($row = $result->fetch_assoc()) {
+        $movies[] = $row;
+    }
 
-    // 가장 많이 나온 장르의 영화 중 별점을 단 수가 많고 평균 별점이 높은 영화
-    $sql = "SELECT m.movieId, m.title, AVG(r.rating) AS average_rating
-            FROM favorites f
-            JOIN movies m ON f.movie_id = m.movieId
-            LEFT JOIN ratings r ON m.movieId = r.movieId
-            WHERE f.user_id = ? AND m.genres = ?
-            GROUP BY m.movieId, m.title
-            HAVING COUNT(r.rating) > 10
-            ORDER BY average_rating DESC
-            LIMIT 3";
+    // 세 번째 데이터 확인 (레이팅 또는 코멘트)
+    $third_data = $_POST['third_data'];
 
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("is", $userId, $mostPopularGenre);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $recommendedMovies = [];
-        while ($row = $result->fetch_assoc()) {
-            $recommendedMovies[] = [
-                'movieId' => $row['movieId'],
-                'title' => $row['title'],
-                'average_rating' => round($row['average_rating'], 2)
-            ];
+    if ($third_data === 'rating') {
+        // 레이팅일 경우
+        $max_rating = 0;
+        $best_movie_id = null;
+        foreach ($movies as $movie) {
+            $rating_sum += $movie['rating'];
+            $rating_count++;
         }
-        // 추천된 영화 정보를 JSON 파일로 저장
-        file_put_contents('recommended_movies.json', json_encode($recommendedMovies));
-        echo "Recommended movies saved successfully.";
+        $average_rating = $rating_sum / $rating_count;
+
+        // 가장 높은 평균 별점을 가진 영화 찾기
+        foreach ($movies as $movie) {
+            if ($movie['rating'] > $max_rating) {
+                $max_rating = $movie['rating'];
+                $best_movie_id = $movie['id'];
+            }
+        }
+        echo $best_movie_id;
+        $_SESSION['best_movie_id'] = $best_movie_id;
+    } elseif ($third_data === 'comment') {
+        // 코멘트일 경우
+        $max_tags = 0;
+        $most_tagged_movie_id = null;
+        foreach ($movies as $movie) {
+            $tag_count = count(explode(',', $movie['tags']));
+            if ($tag_count > $max_tags) {
+                $max_tags = $tag_count;
+                $most_tagged_movie_id = $movie['id'];
+            }
+        }
+        echo $most_tagged_movie_id;
+        $_SESSION['best_movie_id'] = $most_tagged_movie_id;
     } else {
-        echo "No recommended movies found.";
+        echo "Invalid third data type";
     }
 } else {
-    echo "No favorite movies found.";
+    echo "0 results";
 }
 
-$stmt->close();
+
+// 연결 종료
 $conn->close();
 ?>
