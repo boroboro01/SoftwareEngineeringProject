@@ -58,7 +58,7 @@ $result = $stmt->get_result();
             position: fixed;
             left: 0;
             top: 0;
-            background-color: rgb(40, 40, 40);
+            background-color: #010101;
             width: 0;
             height: 100%;
             overflow: hidden;
@@ -128,7 +128,7 @@ $result = $stmt->get_result();
         <ul>
             <li class="sidemenu"><a href="./main.php">Home</a></li>
             <li class="sidemenu"><a href="#">Favorite</a></li>
-            <li class="sidemenu"><a href="#">History</a></li>
+            <li class="sidemenu"><a href="./history.php">History</a></li>
             <li class="sidemenu"><a href="../php_files/movieList.php">Movie List</a></li>
         </ul>
     </nav>

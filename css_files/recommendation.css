@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=M+PLUS+Rounded+1c&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
 * {
     margin: 0 auto;
     padding: 0 auto;
+    font-family: 'Teachers', sans-serif;
 }
 #first {
     display: flex;
     opacity: 1;
     transition: 1s ease-in-out;
+    align-items: center;
 }
 #first.hide {
     display: flex;

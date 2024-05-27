@@ -123,11 +123,13 @@
         .popup {
             display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
+            top: 40%;
+            left: 25%;
             transform: translate(-50%, -50%);
+            width: 20%;
+            height: 20%;
             background-color: #222;
-            padding: 20px;
+            padding: 50px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             z-index: 1000;
@@ -157,6 +159,21 @@
         .popup button.close {
             background-color: red;
             color: white;
+        }
+
+        /* 영화 설명 박스 */
+        .description {
+            font-size: 28px;
+            position: fixed;
+            top: 45%;
+            right: 15%;
+            width: 300px;
+            height: 500px;
+            background-color: darkgray;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            transform: translateY(-50%);
         }
     </style>
 </head>
@@ -207,7 +224,6 @@
             <img src='../Assets/Images/Posters/" . $movieId . ".jpg' alt='" .
             htmlspecialchars($movieId) . " Poster'>
             </div>";
-
         echo "<p class=\"Taging\">Tags: ";
         while ($tag = $tagsResult->fetch_assoc()) {
             echo htmlspecialchars($tag['tag']) . " ";
@@ -254,6 +270,26 @@
             <button type="button" class="close">Close</button>
         </form>
     </div>
+
+    <?php
+    require_once 'db.php';
+
+    $sql = "SELECT description FROM movie_descriptions WHERE movie_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $movieId);
+    $stmt->execute();
+    $stmt->bind_result($description);
+    $stmt->fetch();
+    $stmt->close();
+    ?>
+
+
+    <div class="description">
+        <?php
+        echo htmlspecialchars($description);
+        ?>
+    </div>
+
 
     <script>
         document.getElementById('addCommentButton').addEventListener('click', function (e) {
