@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link rel="stylesheet" href="../css_files/main_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css_files/recommendPanel_style.css">
+</head>
+
+<body>
+    <div>
+        <header>
+            <h1 class="title">SEENEMA</h1>
+        </header>
+        <nav>
+            <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
+            <ul>
+                <li class="sidemenu"><a href="./main.html">Trending</a></li>
+                <li class="sidemenu"><a href="http://">Favorite</a></li>
+                <li class="sidemenu"><a href="http://">History</a></li>
+                <div id="movieList_a" class="sidemenu">
+                    <a href="../php_files/movieList.php">Movie List</a>
+                </div>
+            </ul>
+            <div class="sizedbox_large"></div>
+                <ul>
+                    <li class="sidemenu" id="login_a">
+                        <a href="./login.html">Log in</a>
+                    </li>
+                    <li class="sidemenu" id="register_a">
+                        <a href="./register.html">Register</a>
+                    </li>
+                </ul> 
+        </nav>
+        <section>
+            <article>
+                <div id="panel">
+                    <h2 class="panel_title">Animation</h2>
+                    <div class="panel_main">
+                        <div class="panel_left">
+                            <h3>토이스토리(영화 제목)</h3>
+                            <img class="movie_poster" src="../Assets/Images/Posters/1.jpg" alt="">
+                            <div class="rating_star">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="far fa-star"></i></li>
+                                    <li><i class="far fa-star"></i></li>
+                                    <li><i class="far fa-star"></i></li>
+                                    <li><i class="far fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel_right">
+                            <div class="comment">
+                                <h2 id="name">홍길동</h2>
+                                <p id="comment">완전 추천합니다!<br>2줄 출력</p>
+                            </div>
+                            <div class="comment">
+                                <h2 id="name">고길동</h2>
+                                <p id="comment">재미없습니다. 보지마세요.<br>2줄 출력</p>
+                            </div>
+                            <div class="comment">
+                                <h2 id="name">고길동</h2>
+                                <p id="comment">재미없습니다. 보지마세요.<br>2줄 출력</p>
+                            </div>
+                            <div class="comment_button">
+                                <a href="#">Comment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <div class="sizedbox">
+            </div>
+            <hr class="footer_bar">
+        </section>
+        <footer>     
+            <a href="#" onclick="showPanel(); return false;"><img src="../Assets/Images/Vectors/magnifier_animal_inu.png" alt="영화 추천 받기"
+                    id="recommending"></a>
+        </footer>
+    </div>
+    
+</body>
+
+</html>
