@@ -132,7 +132,7 @@ $result = $stmt->get_result();
     <nav>
         <ul>
             <li class="sidemenu"><a href="./main.php">Home</a></li>
-            <li class="sidemenu"><a href="#">Favorite</a></li>
+            <li class="sidemenu"><a href="./favorite.php">Favorite</a></li>
             <li class="sidemenu"><a href="#">History</a></li>
             <li class="sidemenu"><a href="../php_files/movieList.php">Movie List</a></li>
         </ul>
