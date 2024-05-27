@@ -63,7 +63,7 @@ $result = $stmt->get_result();
             position: fixed;
             left: 0;
             top: 0;
-            background-color: rgb(40, 40, 40);
+            background-color: #010101;
             width: 0;
             height: 100%;
             overflow: hidden;

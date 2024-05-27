@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=M+PLUS+Rounded+1c&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
+*{ margin: 0; padding: 0; font-family: 'Teachers', sans-serif; }
 .panel {
     display: flex;
     flex-wrap: wrap;
@@ -25,9 +27,14 @@
 }
 .movie_poster {
     border-radius: 10px;
-    width: 25vw;
+    width: 20vw;
     height: 45vh;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 25);
+    transition: 300ms ease;
+}
+.movie_poster:hover {
+    width: 21vw;
+    height: 46vh;
 }
 .content_right {
     display: flex;
@@ -55,16 +62,26 @@
     margin: 0 15px;
 }
 .comment_button {
-    margin-top: 50px;
-    margin-left: 50%;
-    width: 200px;
-    padding-bottom: 5px;
-    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    padding: 10px;
+    background-color: #fff;
     border-radius: 50px;
+    margin-top: 20px;
     text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 25);
+    cursor: pointer;
+    font-size: 2em;
+    transition: 300ms ease;
 }
-.comment_button > a {
-    font-size: x-large;
-    text-decoration: none;
-    color: black;
+.comment_button:hover {
+    background-color: #010101;
+    color: #fff;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

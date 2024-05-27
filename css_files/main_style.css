@@ -77,22 +77,16 @@ h1.title {
     margin-top: 10px;
     padding: 0;
 }
-h2.subtitle {
-    margin-top: 0;
-    padding: 0;
-}
 article {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
     background: linear-gradient(#272122, #0d1423);
     width: 100vw;
     height: 100%;
 }
-hr.footer_bar {
-    width: 95%;
-    color: grey;
-}
+
 .sizedbox {
     height: 50px;
 }

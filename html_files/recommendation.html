@@ -7,7 +7,47 @@
     <title>main</title>
     <link rel="stylesheet" href="../css_files/recommendation.css">
     <style>
-        
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=M+PLUS+Rounded+1c&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
+* {
+    margin: 0 auto;
+    padding: 0 auto;
+    font-family: 'Teachers', sans-serif;
+}
+#first {
+    display: flex;
+    opacity: 1;
+    transition: 1s ease-in-out;
+    align-items: center;
+}
+#first.hide {
+    display: flex;
+    opacity: 0;
+    align-items: center;
+}
+#second {
+    display: flex;
+    opacity: 1;
+    transition: 1s ease-in-out;
+    align-items: center;
+}
+#second.hide {
+    display: none;
+    opacity: 0;
+    transition: 1s ease-in-out;
+    align-items: center;
+}
+#third {
+    display: flex;
+    opacity: 1;
+    transition: 1s ease-in-out;
+    align-items: center;
+}
+#third.hide {
+    display: none;
+    opacity: 0;
+    transition: 1s ease-in-out;
+    align-items: center;
+}
     </style>
 </head>
 
@@ -17,110 +57,110 @@
             <h1 class="title">SEENEMA</h1>
         </header>
         <section>
-        <div id="first">
-            <div class="card" id="romance">
-                <div class="poster">
-                    <div class="sizedbox_small">
+            <div id="first">
+                <div class="card" id="romance">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/renai3_young.png">
                     </div>
-                    <img src="../Assets/Images/Vectors/renai3_young.png">
-                </div>
-                <div class="title">
-                    <span>Romance</span>
-                </div>
-            </div>
-            <div class="card"  id="action">
-                <div class="poster">
-                    <img src="../Assets/Images/Vectors/job_spy.png">
-                </div>
-                <div class="title">
-                    <span>Action</span>
-                </div>
-            </div>
-            <div class="card"  id="comedy">
-                <div class="poster">
-                    <div class="sizedbox">
+                    <div class="title">
+                        <span>Romance</span>
                     </div>
-                    <img src="../Assets/Images/Vectors/animal_music_band.png">
                 </div>
-                <div class="title">
-                    <span>Comedy</span>
-                </div>
-            </div>
-            <div class="card"  id="animation">
-                <div class="poster">
-                    <div class="sizedbox_small">
+                <div class="card" id="action">
+                    <div class="poster">
+                        <img src="../Assets/Images/Vectors/job_spy.png">
                     </div>
-                    <img src="../Assets/Images/Vectors/kyodai_robot.png">
+                    <div class="title">
+                        <span>Action</span>
+                    </div>
                 </div>
-                <div class="title">
-                    <span>Animation</span>
+                <div class="card" id="comedy">
+                    <div class="poster">
+                        <div class="sizedbox">
+                        </div>
+                        <img src="../Assets/Images/Vectors/animal_music_band.png">
+                    </div>
+                    <div class="title">
+                        <span>Comedy</span>
+                    </div>
+                </div>
+                <div class="card" id="animation">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/kyodai_robot.png">
+                    </div>
+                    <div class="title">
+                        <span>Animation</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="second" class="hide">
-            <div class="card" id="80s">
-                <div class="poster">
-                    <div class="sizedbox_small">
+            <div id="second" class="hide">
+                <div class="card" id="80s">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/radio_shinkuukan.png">
                     </div>
-                    <img src="../Assets/Images/Vectors/radio_shinkuukan.png">
-                </div>
-                <div class="title">
-                    <span>80s</span>
-                </div>
-            </div>
-            <div class="card" id="90s">
-                <div class="poster">
-                    <div class="sizedbox_small">
+                    <div class="title">
+                        <span>80s</span>
                     </div>
-                    <img src="../Assets/Images/Vectors/syouwa_tv_old.png">
                 </div>
-                <div class="title">
-                    <span>90s</span>
-                </div>
-            </div>
-            <div class="card" id="00s">
-                <div class="poster">
-                    <div class="sizedbox_small">
+                <div class="card" id="90s">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/syouwa_tv_old.png">
                     </div>
-                    <img src="../Assets/Images/Vectors/kaden_buraunkan_tv.png">
+                    <div class="title">
+                        <span>90s</span>
+                    </div>
                 </div>
-                <div class="title">
-                    <span>00s</span>
+                <div class="card" id="00s">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/kaden_buraunkan_tv.png">
+                    </div>
+                    <div class="title">
+                        <span>00s</span>
+                    </div>
+                </div>
+                <div class="card" id="10s">
+                    <div class="poster">
+                        <img src="../Assets/Images/Vectors/tv_screen_black.png">
+                    </div>
+                    <div class="title">
+                        <span>10s</span>
+                    </div>
                 </div>
             </div>
-            <div class="card"  id="10s">
-                <div class="poster">
-                    <img src="../Assets/Images/Vectors/tv_screen_black.png">
-                </div>
-                <div class="title">
-                    <span>10s</span>
-                </div>
-            </div>
-        </div>
 
-        <div id="third" class="hide">
-            <div class="card" id="rating">
-                <div class="poster">
-                    <div class="sizedbox_small">
+            <div id="third" class="hide">
+                <div class="card" id="rating">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/small_star7_yellow.png">
                     </div>
-                    <img src="../Assets/Images/Vectors/small_star7_yellow.png">
+                    <div class="title">
+                        <span>Ratings</span>
+                    </div>
                 </div>
-                <div class="title">
-                    <span>Ratings</span>
+                <div class="card" id="comment">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/pose_souzou_man.png">
+                    </div>
+                    <div class="title">
+                        <span>Comments</span>
+                    </div>
                 </div>
             </div>
-            <div class="card" id="comment">
-                <div class="poster">
-                    <div class="sizedbox_small">
-                    </div>
-                    <img src="../Assets/Images/Vectors/pose_souzou_man.png">
-                </div>
-                <div class="title">
-                    <span>Comments</span>
-                </div>
-            </div>
-        </div>
         </section>
         <footer>
             <span class="pick-text">What you pick</span>
@@ -135,107 +175,113 @@
 <script>
     let recommendation = [];
 
+
     //First
-    document.getElementById("romance").addEventListener("click", function() {
+    document.getElementById("romance").addEventListener("click", function () {
         recommendation.push("Romance");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/renai3_young.png"
         document.getElementById("first").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("action").addEventListener("click", function() {
+    })
+    document.getElementById("action").addEventListener("click", function () {
         recommendation.push("Action");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/job_spy.png"
         document.getElementById("first").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("comedy").addEventListener("click", function() {
+    })
+    document.getElementById("comedy").addEventListener("click", function () {
         recommendation.push("Comedy");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/animal_music_band.png"
         document.getElementById("first").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("animation").addEventListener("click", function() {
+    })
+    document.getElementById("animation").addEventListener("click", function () {
         recommendation.push("Animation");
         document.getElementById("pick1").src = "../Assets/Images/Vectors/kyodai_robot.png"
         document.getElementById("first").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("first").style.display = 'none';
             document.getElementById("second").classList.toggle('hide');
         }, 1000);
-     })
+    })
 
-     //Second
-     document.getElementById("80s").addEventListener("click", function() {
+    //Second
+    document.getElementById("80s").addEventListener("click", function () {
         recommendation.push("80s");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/radio_shinkuukan.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("90s").addEventListener("click", function() {
+    })
+    document.getElementById("90s").addEventListener("click", function () {
         recommendation.push("90s");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/syouwa_tv_old.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("00s").addEventListener("click", function() {
+    })
+    document.getElementById("00s").addEventListener("click", function () {
         recommendation.push("00s");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/kaden_buraunkan_tv.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-     })
-     document.getElementById("10s").addEventListener("click", function() {
+    })
+    document.getElementById("10s").addEventListener("click", function () {
         recommendation.push("10s");
         document.getElementById("pick2").src = "../Assets/Images/Vectors/tv_screen_black.png"
         document.getElementById("second").style.display = 'flex';
         document.getElementById("second").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("second").style.display = 'none';
             document.getElementById("third").classList.toggle('hide');
         }, 1000);
-     })
+    })
 
-     //Third
-     document.getElementById("rating").addEventListener("click", function() {
+    //Third
+    document.getElementById("rating").addEventListener("click", function () {
         recommendation.push("rating");
         document.getElementById("pick3").src = "../Assets/Images/Vectors/small_star7_yellow.png"
         document.getElementById("third").style.display = 'flex';
         document.getElementById("third").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("third").style.display = 'none';
             window.location.href = "recommendPane.html";
         }, 1000);
-     })
-     document.getElementById("comment").addEventListener("click", function() {
+        const movieJson = {
+            genres: recommendation[0],
+            ages: recommendation[1],
+            orders: recommendation[2],
+        }
+    })
+    document.getElementById("comment").addEventListener("click", function () {
         recommendation.push("comment");
         document.getElementById("pick3").src = "../Assets/Images/Vectors/pose_souzou_man.png"
         document.getElementById("third").style.display = 'flex';
         document.getElementById("third").classList.toggle('hide');
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("third").style.display = 'none';
             window.location.href = "recommendPane.html";
         }, 1000);
-     })
+    })
 </script>
 
 </html>
