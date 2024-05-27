@@ -115,6 +115,7 @@
         <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
         <div class="sidebar">
             <ul>
+            <li class="sidemenu"><a href="../php_files/main.php">home</a></li>
                 <li class="sidemenu"><a href="../php_files/favorite.php">Favorite</a></li>
                 <li class="sidemenu"><a href="../php_files/history.php">History</a></li>
                 <div id="movieList_a" class="sidemenu">
@@ -313,7 +314,6 @@
 
     $conn->close();
     ?>
-
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
