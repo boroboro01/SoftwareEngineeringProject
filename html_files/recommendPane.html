@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link rel="stylesheet" href="../css_files/main_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css_files/recommendPanel_style.css">
+
+</head>
+
+<body>
+    <header>
+        <h1 class="title">SEENEMA</h1>
+    </header>
+    <nav>
+        <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
+        <ul>
+            <li class="sidemenu"><a href="./main.html">Trending</a></li>
+            <li class="sidemenu"><a href="http://">Favorite</a></li>
+            <li class="sidemenu"><a href="http://">History</a></li>
+            <div id="movieList_a" class="sidemenu">
+                <a href="../php_files/movieList.php">Movie List</a>
+            </div>
+        </ul>
+        <div class="sizedbox_large"></div>
+        <ul>
+            <li class="sidemenu" id="login_a">
+                <a href="./login.html">Log in</a>
+            </li>
+            <li class="sidemenu" id="register_a">
+                <a href="./register.html">Register</a>
+            </li>
+        </ul>
+    </nav>
+    <section>
+        <div class="panel">
+            <div class="content">
+                <img class="movie_poster" src="../Assets/Images/Posters/1.jpg" alt="">
+                <div class="rating_star">
+                    <i class="fas fa-star"></i></li>
+                    <i class="far fa-star"></i></li>
+                    <i class="far fa-star"></i></li>
+                    <i class="far fa-star"></i></li>
+                    <i class="far fa-star"></i></li>
+                </div>
+            </div>
+            <div class="content_right">
+                <div class="panel_title">Toy Story</div>
+                <div class="comment">
+                    <i class="fa-regular fa-user"></i>
+                    <div class="name">James</div>
+                    <div class="reply">A timeless and innovative classic.</div>
+                </div>
+                <div class="comment">
+                    <i class="fa-regular fa-user"></i>
+                    <div class="name">Tom</div>
+                    <div class="reply">Charming, funny, and heartfelt.</div>
+                </div>
+                <div class="comment">
+                    <i class="fa-regular fa-user"></i>
+                    <div class="name">Sherry</div>
+                    <div class="reply">Brilliantly blends adventure and humor.</div>
+                </div>
+                <!-- <div class="comment_button">
+                    <a href="#">Comment</a>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <footer>
+    </footer>
+</body>
+
+</html>

@@ -1,65 +1,59 @@
-/*추천 패널*/
-
-#panel {
-    border-radius: 50px;
-    position: relative;
-    left: 5%;
-    width: 90%;
-    height: 90%;
-    background-color: rgba(150, 150, 150, 0.8);
+.panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#272122, #0d1423);
+    width: 100vw;
+    height: 100%;
 }
-
-.panel_main {
-}
-
-.panel_left {
-    margin-left: 10%;
-    float: left;
-    width: 280px;
-}
-
 .rating_star {
     margin-top: 20px;
-}
-
-.rating_star > ul {
-    list-style-type: none;
-}
-
-.rating_star > ul > li {
-    padding-left: 20px;
-    float: left;
+    position: relative;
+    font-size: 1.5em;
     color: yellow;
 }
-
-.rating_star > ul > li > i {
-    scale: 150%;
+.content {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-
-.panel_right {
-    margin-left: 10%;
-    margin-right: 10%;
-    float: right;
-    float: left;
-    width: 40%;
-}
-
 .panel_title {
-    text-align: center;
-    font-size:xx-large;
+    margin-bottom: 25px;
+    font-size: 2em;
 }
-
 .movie_poster {
     border-radius: 10px;
-    width: 100%;
+    width: 25vw;
+    height: 45vh;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 25);
 }
-
+.content_right {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin-left: 30px;
+    height: 30vh;
+    align-items: left;
+    justify-content: center;
+    background-color: #42464b;
+    color: #fff;
+    border-radius: 20px;
+    overflow:scroll;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 25);
+}
 .comment {
-    text-align: left;
-    height: 100px;
-    font-size: large;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
 }
-
+.comment i {
+    font-size: 2em;
+}
+.comment .name {
+    margin: 0 15px;
+}
 .comment_button {
     margin-top: 50px;
     margin-left: 50%;
