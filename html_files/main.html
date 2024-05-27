@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main</title>
     <link rel="stylesheet" href="../css_files/main_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        function showPanel() {
+            var div = document.getElementById('panel');
+            if (div.style.display === 'none' || div.style.display === '') {
+                div.style.display = 'block';
+            } else {
+                div.style.display = 'none';
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -45,9 +56,43 @@
             <hr class="footer_bar">
         </section>
         <footer>     
-            <a href=""><img src="../Assets/Images/Vectors/magnifier_animal_inu.png" alt="영화 추천 받기"
+            <a href="#" onclick="showPanel(); return false;"><img src="../Assets/Images/Vectors/magnifier_animal_inu.png" alt="영화 추천 받기"
                     id="recommending"></a>
         </footer>
+    </div>
+    <div id="panel">
+        <h1 class="panel_title">Animation</h1>
+        <div class="panel_main">
+            <div class="panel_left">
+                <img class="movie_poster" src="../Assets/Images/Posters/1.jpg" alt="">
+                <div class="rating_star">
+                    <ul>
+                        <li><i class="fas fa-star"></i></li>
+                        <li><i class="far fa-star"></i></li>
+                        <li><i class="far fa-star"></i></li>
+                        <li><i class="far fa-star"></i></li>
+                        <li><i class="far fa-star"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel_right">
+                <div class="comment">
+                    <h2 id="name">홍길동</h2>
+                    <p id="comment">완전 추천합니다!<br>2줄 출력</p>
+                </div>
+                <div class="comment">
+                    <h2 id="name">고길동</h2>
+                    <p id="comment">재미없습니다. 보지마세요.<br>2줄 출력</p>
+                </div>
+                <div class="comment">
+                    <h2 id="name">고길동</h2>
+                    <p id="comment">재미없습니다. 보지마세요.<br>2줄 출력</p>
+                </div>
+                <div class="comment_button">
+                    <a href="#">Comment</a>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
