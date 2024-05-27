@@ -171,7 +171,7 @@
     </section>
     <footer>
         <hr class="footer_bar">
-        <a href="recommend.php"><img src="../Assets/Images/Vectors/magnifier_animal_inu.png" alt="영화 추천 받기"
+        <a href="../html_files/recommendation.html"><img src="../Assets/Images/Vectors/magnifier_animal_inu.png" alt="영화 추천 받기"
                 id="recommending"></a>
     </footer>
 </body>
