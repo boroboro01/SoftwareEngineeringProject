@@ -57,7 +57,7 @@
         .card:hover .details {
             bottom: 0px;
         }
-        .card .details .logo {
+        .card .details a .logo {
             max-width: 180px;
         }
         .card .details a {

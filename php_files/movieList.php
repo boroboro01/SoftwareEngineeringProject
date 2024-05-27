@@ -7,6 +7,7 @@
     <title>Movie List</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css_files/movie_card.css">
+    <link rel="stylesheet" href="../css_files/main_style.css">
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Dongle&family=M+PLUS+Rounded+1c&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
 
@@ -25,6 +26,14 @@
 }
 .container::-webkit-scrollbar {
     display: none;
+}
+
+.page-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 3em;
 }
 
 th,
@@ -97,16 +106,35 @@ td {
             </div>
         </div>
     </div> -->
+    <nav>
+            <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
+            <div class="sidebar">
+            <ul>
+                <li class="sidemenu"><a href="../php_files/favorite.php">Favorite</a></li>
+                <li class="sidemenu"><a href="../php_files/history.php">History</a></li>
+                <div id="movieList_a" class="sidemenu">
+                    <a href="../php_files/movieList.php">Movie List</a>
+                </div>
+            </ul>
+            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
+                <div id="login_a" class="sidemenu">
+                    <a href="./logout.php">Log out</a>
+                </div>
+                <div id="username" class="sidemenu">
+                    <p> Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></p>
+                </div>
+            <?php else: ?>
+                <div id="login_a" class="sidemenu">
+                    <a href="../html_files/login.html">Log in</a>
+                </div>
+                <div id="register_a" class="sidemenu">
+                    <a href="../html_files/register.html">Register</a>
+                </div>
+            <?php endif; ?>
+            </div>
+        </nav>
 
 
-
-
-
-
-
-
-
-    
     <?php
     $servername = "127.0.0.1";
     $username = "root";
@@ -161,13 +189,23 @@ td {
         if ($favResult->fetch_assoc()) {
             $favorited = 1;  // 좋아요 상태가 확인되면 변수를 1로 설정
         } else {
-            echo"<p>favorite ". ($favorited) ."";
+            
         }
         $favStmt->close();
 
     if ($result->num_rows > 0) {
+        echo '
+        ';
+
         echo "
+
         <div class='wrapper'>
+        <div class='page-title'>
+        Movies
+        </div>
+
+
+
         <div class='container'>
             <table>
                 <tr>";
@@ -180,23 +218,36 @@ td {
                 htmlspecialchars($movie['title']) . " Poster'>
         </div>
         <div class='details'>
-            <img src='../Assets/Images/Logos/1.png' class='logo'>
-            <div class='rating'>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-regular fa-star'></i>
-            <span>" . round($movie['average_rating'], 2) . "</span>
-            </div>
+
+        ";
+
+        echo"
+            <a href='movieDetails.php?movieId=" . $row['movieId'] .
+                "'>
+                <img src='../Assets/Images/Logos/" .$row['movieId'] . ".png' alt='"
+                 . htmlspecialchars($row["title"]) .  " Poster' class='logo'> 
+                        
+                 </a>
+            ";
+            // <div class='rating'>
+            // <i class='fa-solid fa-star'></i>
+            // <i class='fa-solid fa-star'></i>
+            // <i class='fa-solid fa-star'></i>
+            // <i class='fa-solid fa-star'></i>
+            // <i class='fa-regular fa-star'></i>
+            // <span>" . round($movie['average_rating'], 2) . "</span>
+            // </div>
+            // <div class='info'>
+            //     <p>
+            //     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            //     </p>
+            // </div>
+        echo"
+
             <div class='tags'>
                 <span>". htmlspecialchars($row["genres"]) ."</span>
             </div>
-            <div class='info'>
-                <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-            </div>
+            
             <div class='comment'>
                 <h4>Comment</h4>
                 <ul>
@@ -208,32 +259,33 @@ td {
                         <i class='fa-regular fa-user'></i>
                         <p>Phasellus tincidunt congue dignissim.</p>
                     </li>
-                    <li>
-                        <i class='fa-solid fa-pen'></i>
-                        <form>
-                            <input type='text' placeholder='type your comment'/>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-            ";
-            
-            echo '
-            
-            <a href="#" class="favorite-toggle" data-movie-id="' . $row['movieId'] . '" data-favorited="' . $favorited . '">
 
-            <i class="' . ($favorited ? 'fa-solid' : 'fa-regular') . ' fa-heart"></i>
-            </a>
+                    ";
+            //         echo "
+            //         <li>
+            //             <i class='fa-solid fa-pen'></i>
+            //             <form>
+            //                 <input type='text' placeholder='type your comment'/>
+            //             </form>
+            //         </li>
+            //     </ul>
+            // </div>
+            // ";
+            
+            // echo '
+            
+            // <a href="#" class="favorite-toggle" data-movie-id="' . $row['movieId'] . '" data-favorited="' . $favorited . '">
+
+            // <i class="' . ($favorited ? 'fa-solid' : 'fa-regular') . ' fa-heart"></i>
+            // </a>
 
             
-            ';
+            // ';
             echo"
             
         </div>
     </div>
-                        <a href='movieDetails.php?movieId=" . $row['movieId'] .
-                "'>" . htmlspecialchars($row["title"]) .  " 
-                        </a>
+                        
                     </td>";
         }
         echo "
