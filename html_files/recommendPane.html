@@ -59,7 +59,7 @@
                     <div class="reply">Brilliantly blends adventure and humor.</div>
                 </div>
             </div>
-            <div class="comment_button">
+            <div class="comment_button" id="comment_button">
                 Details
             </div>
         </div>
@@ -67,6 +67,11 @@
     </section>
     <footer>
     </footer>
-</body>
 
+</body>
+<script>
+    document.getElementById("comment_button").addEventListener("click", function () {
+        window.location.href = "../php_files/movieList.php";
+    });
+</script>
 </html>
