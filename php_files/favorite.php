@@ -4,7 +4,7 @@ session_start();
 // 로그인 상태 검증
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     echo "<script>alert('You must be logged in to view favorites');
-    window.location.href = 'login.html';</script>";
+    window.location.href = '../html_files/login.html';</script>";
     exit;
 }
 

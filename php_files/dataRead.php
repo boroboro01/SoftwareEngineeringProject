@@ -11,22 +11,39 @@ if ($conn->connect_error) {
 }
 
 // CSV 파일 열기
-$skip_rows = 0;
-$handle = fopen("../data_files/movies.csv", "r");
+$skip_rows = 2944;
+// $handle = fopen("../data_files/movies.csv", "r");
+// if ($handle !== FALSE) {
+//     // 특정 행까지 파일 포인터 이동
+//     for ($i = 0; $i < $skip_rows; $i++) {
+//         fgets($handle);
+//     }
+
+//     // 라인별로 읽기
+//     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+//         $movieId = $data[0];
+//         $title = addslashes($data[1]); // SQL 쿼리를 위해 escape 처리
+//         $genres = addslashes($data[2]);
+
+//         // 데이터베이스에 데이터 삽입
+//         $sql = "INSERT INTO movies (movieId, title, genres) VALUES ('$movieId', '$title', '$genres')";
+//         if (!$conn->query($sql)) {
+//             echo "Error: " . $sql . "<br>" . $conn->error;
+//         }
+//     }
+//     fclose($handle);
+// }
+
+
+$handle = fopen("../data_files/ratings.csv", "r");
 if ($handle !== FALSE) {
-    // 특정 행까지 파일 포인터 이동
-    for ($i = 0; $i < $skip_rows; $i++) {
-        fgets($handle);
-    }
-
-    // 라인별로 읽기
+    fgetcsv($handle);  // 헤더 스킵
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-        $movieId = $data[0];
-        $title = addslashes($data[1]); // SQL 쿼리를 위해 escape 처리
-        $genres = addslashes($data[2]);
-
-        // 데이터베이스에 데이터 삽입
-        $sql = "INSERT INTO movies (movieId, title, genres) VALUES ('$movieId', '$title', '$genres')";
+        $userId = $data[0];
+        $movieId = $data[1];
+        $rating = $data[2];
+        $timestamp = $data[3];
+        $sql = "INSERT INTO ratings (userId, movieId, rating, timestamp) VALUES ('$userId', '$movieId', '$rating', '$timestamp')";
         if (!$conn->query($sql)) {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -35,25 +52,13 @@ if ($handle !== FALSE) {
 }
 
 
-// $handle = fopen("../data_files/ratings.csv", "r");
-// if ($handle !== FALSE) {
-//     fgetcsv($handle);  // 헤더 스킵
-//     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-//         $userId = $data[0];
-//         $movieId = $data[1];
-//         $rating = $data[2];
-//         $timestamp = $data[3];
-//         $sql = "INSERT INTO ratings (userId, movieId, rating, timestamp) VALUES ('$userId', '$movieId', '$rating', '$timestamp')";
-//         if (!$conn->query($sql)) {
-//             echo "Error: " . $sql . "<br>" . $conn->error;
-//         }
-//     }
-//     fclose($handle);
-// }
-
 // $handle = fopen("../data_files/tags.csv", "r");
 // if ($handle !== FALSE) {
-//     fgetcsv($handle);  // 헤더 스킵
+
+//     for ($i = 0; $i < $skip_rows; $i++) {
+//         fgets($handle);
+//     }
+
 //     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 //         $userId = $data[0];
 //         $movieId = $data[1];
