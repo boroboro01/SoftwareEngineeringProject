@@ -64,19 +64,6 @@ nav:hover{
     width: 150px;
     height: 100%;
 }
-section {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    float: right;
-    width: 90%;
-    height: 80%;
-}
-footer {
-    float: right;
-    width: 90%;
-    height: 10%;
-}
 #recommend {
     height: 100%;
 }
@@ -104,15 +91,10 @@ article {
     height: 50px;
 }
 .sizedbox_large {
-    height: 55%;
+    height: 60%;
 }
 nav > ul > li {
     list-style-type: none;
-}
-.login_conatiner {
-    color: white;
-    height: auto;
-    width: auto;
 }
 #recommending {
     position: absolute;
@@ -123,4 +105,3 @@ nav > ul > li {
 }
 @keyframes imagerotation { 
 }
-
