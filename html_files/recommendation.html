@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link rel="stylesheet" href="../css_files/recommendation.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=M+PLUS+Rounded+1c&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
+* {
+    margin: 0 auto;
+    padding: 0 auto;
+    font-family: 'Teachers', sans-serif;
+}
+#first {
+    display: flex;
+    opacity: 1;
+    transition: 1s ease-in-out;
+    align-items: center;
+}
+#first.hide {
+    display: flex;
+    opacity: 0;
+    align-items: center;
+}
+#second {
+    display: flex;
+    opacity: 1;
+    transition: 1s ease-in-out;
+    align-items: center;
+}
+#second.hide {
+    display: none;
+    opacity: 0;
+    transition: 1s ease-in-out;
+    align-items: center;
+}
+#third {
+    display: flex;
+    opacity: 1;
+    transition: 1s ease-in-out;
+    align-items: center;
+}
+#third.hide {
+    display: none;
+    opacity: 0;
+    transition: 1s ease-in-out;
+    align-items: center;
+}
+    </style>
+</head>
+
+<body>
+    <div>
+        <header>
+            <h1 class="title">Choose your cards!</h1>
+        </header>
+        <section>
+            <div id="first">
+                <div class="card" id="romance">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/renai3_young.png">
+                    </div>
+                    <div class="title">
+                        <span>Romance</span>
+                    </div>
+                </div>
+                <div class="card" id="action">
+                    <div class="poster">
+                        <img src="../Assets/Images/Vectors/job_spy.png">
+                    </div>
+                    <div class="title">
+                        <span>Action</span>
+                    </div>
+                </div>
+                <div class="card" id="comedy">
+                    <div class="poster">
+                        <div class="sizedbox">
+                        </div>
+                        <img src="../Assets/Images/Vectors/animal_music_band.png">
+                    </div>
+                    <div class="title">
+                        <span>Comedy</span>
+                    </div>
+                </div>
+                <div class="card" id="animation">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/kyodai_robot.png">
+                    </div>
+                    <div class="title">
+                        <span>Animation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="second" class="hide">
+                <div class="card" id="80s">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/radio_shinkuukan.png">
+                    </div>
+                    <div class="title">
+                        <span>80s</span>
+                    </div>
+                </div>
+                <div class="card" id="90s">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/syouwa_tv_old.png">
+                    </div>
+                    <div class="title">
+                        <span>90s</span>
+                    </div>
+                </div>
+                <div class="card" id="00s">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/kaden_buraunkan_tv.png">
+                    </div>
+                    <div class="title">
+                        <span>00s</span>
+                    </div>
+                </div>
+                <div class="card" id="10s">
+                    <div class="poster">
+                        <img src="../Assets/Images/Vectors/tv_screen_black.png">
+                    </div>
+                    <div class="title">
+                        <span>10s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="third" class="hide">
+                <div class="card" id="rating">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/small_star7_yellow.png">
+                    </div>
+                    <div class="title">
+                        <span>Ratings</span>
+                    </div>
+                </div>
+                <div class="card" id="comment">
+                    <div class="poster">
+                        <div class="sizedbox_small">
+                        </div>
+                        <img src="../Assets/Images/Vectors/pose_souzou_man.png">
+                    </div>
+                    <div class="title">
+                        <span>Comments</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <span class="pick-text">What you pick</span>
+            <div class="image-list">
+                <img id="pick1" class="pick-image" src="">
+                <img id="pick2" class="pick-image" src="">
+                <img id="pick3" class="pick-image" src="">
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+    let recommendation = [];
+
+
+    //First
+    document.getElementById("romance").addEventListener("click", function () {
+        recommendation.push("Romance");
+        document.getElementById("pick1").src = "../Assets/Images/Vectors/renai3_young.png"
+        document.getElementById("first").classList.toggle('hide');
+        setTimeout(function () {
+            document.getElementById("first").style.display = 'none';
+            document.getElementById("second").classList.toggle('hide');
+        }, 1000);
+    });
+    document.getElementById("action").addEventListener("click", function () {
+        recommendation.push("Action");
+        document.getElementById("pick1").src = "../Assets/Images/Vectors/job_spy.png"
+        document.getElementById("first").classList.toggle('hide');
+        setTimeout(function () {
+            document.getElementById("first").style.display = 'none';
+            document.getElementById("second").classList.toggle('hide');
+        }, 1000);
+    });
+    document.getElementById("comedy").addEventListener("click", function () {
+        recommendation.push("Comedy");
+        document.getElementById("pick1").src = "../Assets/Images/Vectors/animal_music_band.png"
+        document.getElementById("first").classList.toggle('hide');
+        setTimeout(function () {
+            document.getElementById("first").style.display = 'none';
+            document.getElementById("second").classList.toggle('hide');
+        }, 1000);
+    });
+    document.getElementById("animation").addEventListener("click", function () {
+        recommendation.push("Animation");
+        document.getElementById("pick1").src = "../Assets/Images/Vectors/kyodai_robot.png"
+        document.getElementById("first").classList.toggle('hide');
+        setTimeout(function () {
+            document.getElementById("first").style.display = 'none';
+            document.getElementById("second").classList.toggle('hide');
+        }, 1000);
+    });
+
+    //Second
+    document.getElementById("80s").addEventListener("click", function () {
+        recommendation.push("1980");
+        document.getElementById("pick2").src = "../Assets/Images/Vectors/radio_shinkuukan.png"
+        document.getElementById("second").style.display = 'flex';
+        document.getElementById("second").classList.toggle('hide');
+        setTimeout(function () {
+            document.getElementById("second").style.display = 'none';
+            document.getElementById("third").classList.toggle('hide');
+        }, 1000);
+    });
+    document.getElementById("90s").addEventListener("click", function () {
+        recommendation.push("1990");
+        document.getElementById("pick2").src = "../Assets/Images/Vectors/syouwa_tv_old.png"
+        document.getElementById("second").style.display = 'flex';
+        document.getElementById("second").classList.toggle('hide');
+        setTimeout(function () {
+            document.getElementById("second").style.display = 'none';
+            document.getElementById("third").classList.toggle('hide');
+        }, 1000);
+    });
+    document.getElementById("00s").addEventListener("click", function () {
+        recommendation.push("2000");
+        document.getElementById("pick2").src = "../Assets/Images/Vectors/kaden_buraunkan_tv.png"
+        document.getElementById("second").style.display = 'flex';
+        document.getElementById("second").classList.toggle('hide');
+        setTimeout(function () {
+            document.getElementById("second").style.display = 'none';
+            document.getElementById("third").classList.toggle('hide');
+        }, 1000);
+    });
+    document.getElementById("10s").addEventListener("click", function () {
+        recommendation.push("2010");
+        document.getElementById("pick2").src = "../Assets/Images/Vectors/tv_screen_black.png"
+        document.getElementById("second").style.display = 'flex';
+        document.getElementById("second").classList.toggle('hide');
+        setTimeout(function () {
+            document.getElementById("second").style.display = 'none';
+            document.getElementById("third").classList.toggle('hide');
+        }, 1000);
+    });
+
+    //Third
+    document.getElementById("rating").addEventListener("click", function () {
+        recommendation.push("rating");
+        document.getElementById("pick3").src = "../Assets/Images/Vectors/small_star7_yellow.png"
+        document.getElementById("third").style.display = 'flex';
+        document.getElementById("third").classList.toggle('hide');
+        setTimeout(function () {
+            document.getElementById("third").style.display = 'none';
+            // window.location.href = "recommendPane.html";
+  sendRecommendation("rating"); // send recommendation data with type 'rating'
+        }, 1000);
+    })
+    document.getElementById("comment").addEventListener("click", function () {
+        recommendation.push("comment");
+        document.getElementById("pick3").src = "../Assets/Images/Vectors/pose_souzou_man.png"
+        document.getElementById("third").style.display = 'flex';
+        document.getElementById("third").classList.toggle('hide');
+        setTimeout(function () {
+            document.getElementById("third").style.display = 'none';
+            sendRecommendation("comment"); // send recommendation data with type 'comment'
+            // window.location.href = "recommendPane.html";
+        }, 1000);
+    });
+
+    function sendRecommendation(type) {
+        // Construct query string
+        let queryString = "";
+        queryString += "genres=" + encodeURIComponent(recommendation[0]) + "&"
+            + "year=" + encodeURIComponent(recommendation[1]) + "&" + "third_data=" + encodeURIComponent(type);
+        // Send GET request
+        window.location.href = "../php_files/recommend.php?" + queryString;
+    }
+</script>
+
+
+
+</html>
