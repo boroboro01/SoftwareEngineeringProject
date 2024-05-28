@@ -32,12 +32,16 @@
             display: none;
         }
 
-        .page-title {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
+        .subtitle {
+            text-align: center;
+            width: 100%;
+            height: 10vh;
             font-size: 3em;
+            font-weight: 600;
+        }
+
+        .subtitle p {
+            text-shadow: 0 15px 10px rgba(0, 0, 0, 25);
         }
 
         th,
@@ -68,6 +72,9 @@
         }
 
         @keyframes imagerotation {}
+        #username p{
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -205,8 +212,8 @@
         echo "
 
         <div class='wrapper'>
-        <div class='page-title'>
-        Movies
+        <div class='subtitle'>
+        <p>Movies</p>
         </div>
 
 

@@ -34,69 +34,34 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../css_files/main_style.css">
     <style>
-        html,
-        body {
+        * {
             margin: 0;
             padding: 0;
-            height: 100%;
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Teachers', sans-serif;
         }
 
-        header {
+        body {
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+            min-height: 100vh;
+            background: linear-gradient(#9c101e, #0d1423);
+        }
+
+        .title {
             text-align: center;
             margin: 20px 0;
         }
 
-        #menu_icon {
-            position: fixed;
-            left: 10px;
-            top: 10px;
-            width: 40px;
-            height: 40px;
-            z-index: 2;
-        }
-
-        nav {
-            position: fixed;
-            left: 0;
-            top: 0;
-            background-color: #010101;
-            width: 0;
-            height: 100%;
-            overflow: hidden;
-            transition: width 0.5s;
-            z-index: 1;
-        }
-
-        .sidemenu {
-            height: 50px;
-            overflow: hidden;
-            text-align: center;
-            padding-top: 10px;
-        }
-
-        .sidemenu>a {
-            white-space: nowrap;
-            text-decoration: none;
-            color: white;
-        }
-
-        .sidemenu>a:hover {
-            text-decoration: underline;
-            color: white;
-        }
-
-        #menu_icon:hover+nav,
-        nav:hover {
-            width: 150px;
-        }
-
-        section {
-            margin-left: 70px;
-            padding: 20px;
+        .wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         .infobox {
@@ -124,21 +89,60 @@ $result = $stmt->get_result();
         tr:hover {
             background-color: #555;
         }
+        .subtitle {
+            text-align: center;
+            width: 100%;
+            height: 10vh;
+            font-size: 3em;
+            font-weight: 600;
+        }
+
+        .subtitle p {
+            text-shadow: 0 15px 10px rgba(0, 0, 0, 25);
+        }
+        #username p{
+            color: #fff;
+        }
+        .content {
+            display: flex;
+            width: 80vw;
+            padding: 20px;
+        }
     </style>
 </head>
 
 <body>
-    <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
     <nav>
-        <ul>
-            <li class="sidemenu"><a href="./main.php">Home</a></li>
-            <li class="sidemenu"><a href="./favorite.php">Favorite</a></li>
-            <li class="sidemenu"><a href="#">History</a></li>
-            <li class="sidemenu"><a href="../php_files/movieList.php">Movie List</a></li>
-        </ul>
+        <img src="../Assets/Icons/menu.png" alt="메뉴 아이콘" id="menu_icon">
+        <div class="sidebar">
+            <ul>
+            <li class="sidemenu"><a href="../php_files/main.php">home</a></li>
+                <li class="sidemenu"><a href="../php_files/favorite.php">Favorite</a></li>
+                <li class="sidemenu"><a href="../php_files/history.php">History</a></li>
+                <div id="movieList_a" class="sidemenu">
+                    <a href="../php_files/movieList.php">Movie List</a>
+                </div>
+            </ul>
+            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
+                <div id="login_a" class="sidemenu">
+                    <a href="./logout.php">Log out</a>
+                </div>
+                <div id="username" class="sidemenu">
+                    <p> Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></p>
+                </div>
+            <?php else: ?>
+                <div id="login_a" class="sidemenu">
+                    <a href="../html_files/login.html">Log in</a>
+                </div>
+                <div id="register_a" class="sidemenu">
+                    <a href="../html_files/register.html">Register</a>
+                </div>
+            <?php endif; ?>
+        </div>
     </nav>
-    <section>
-        <h1>Your Movie History</h1>
+    <div class="wrapper">
+        <div class="subtitle"><p>Your Movie History</p></div>
+        <div class="content">
         <?php
         if ($result->num_rows > 0) {
             echo "<table>";
@@ -158,7 +162,8 @@ $result = $stmt->get_result();
         $stmt->close();
         $conn->close();
         ?>
-    </section>
+    </div>
+    </div>
 </body>
 
 </html>
