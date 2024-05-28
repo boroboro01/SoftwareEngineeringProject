@@ -78,9 +78,10 @@ if ($third_data === 'rating') {
 // 연결 종료
 $conn->close();
 if ($best_movie_id !== null) {
-    header("Location: ../html_files/recommendPanel.php?best_movie_id=" . $best_movie_id);
+    header("Location: ../php_files/recommendPanel.php?best_movie_id=" . $best_movie_id);
     exit;
 } else {
-    echo "No movies found with the given criteria.";
+    // echo "No movies found with the given criteria. with $best_movie_id";
+    header("Location: ../php_files/recommendPanel.php?best_movie_id=" . 1);
 }
 ?>

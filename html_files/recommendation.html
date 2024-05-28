@@ -54,7 +54,7 @@
 <body>
     <div>
         <header>
-            <h1 class="title">SEENEMA</h1>
+            <h1 class="title">Choose your cards!</h1>
         </header>
         <section>
             <div id="first">
@@ -264,7 +264,7 @@
         document.getElementById("third").classList.toggle('hide');
         setTimeout(function () {
             document.getElementById("third").style.display = 'none';
-            window.location.href = "recommendPane.html";
+            // window.location.href = "recommendPane.html";
   sendRecommendation("rating"); // send recommendation data with type 'rating'
         }, 1000);
     })
@@ -276,7 +276,7 @@
         setTimeout(function () {
             document.getElementById("third").style.display = 'none';
             sendRecommendation("comment"); // send recommendation data with type 'comment'
-            window.location.href = "recommendPane.html";
+            // window.location.href = "recommendPane.html";
         }, 1000);
     });
 
