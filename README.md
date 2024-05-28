@@ -1,11 +1,9 @@
 # 🧑🏻‍💻SoftwareEngineeringProject
 
-
-Kyonggi University Software Engineering Project Repository. The website recommend movie using movie lens.
-
-
----
 ### 🎬 프로젝트 소개
+
+_Kyonggi University Software Engineering Project Repository. The website recommend movie using movie lens._
+
 Movie lens 데이터를 이용하여 10000가지가 넘는 영화를 소개합니다.
 
 인기가 많은 영화(별점)을 메인 화면에서 보여줍니다. 필요하다면 모든 영화의 리스트를 확인 가능하고 내가 좋아하는 영화 혹은 댓글을 남긴 영화만 모아서 볼 수도 있습니다.
@@ -26,11 +24,9 @@ Movie lens 데이터를 이용하여 10000가지가 넘는 영화를 소개합�
 - js
 - php
 ---
-# DEMO
+# 📝 DEMO
 
 Experience our website before clone of codes. We prepared gif images for demonstration 
-
----
 
 ## Registration and Login
 ![RegisterandLogin](https://github.com/boroboro01/SoftwareEngineeringProject/assets/98679575/292f749c-5fa4-41d5-98b6-efec0098cf08)
