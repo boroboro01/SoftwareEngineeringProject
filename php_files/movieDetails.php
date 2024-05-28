@@ -9,14 +9,15 @@
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dongle&family=M+PLUS+Rounded+1c&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
         html,
         body {
             margin: 0;
             padding: 0;
             height: 100%;
-            background-color: black;
+            background: linear-gradient(#272122, #0d1423);
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Teachers', sans-serif;
         }
 
         header {
@@ -69,11 +70,9 @@
         }
 
         section {
-            margin-left: 70px;
-            padding: 20px;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
 
         .infobox {
@@ -83,14 +82,13 @@
 
         .poster img {
             max-width: 300px;
-            height: auto;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin: 0 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 25);
         }
 
         .Taging {
-            display: inline-block;
-            margin-top: 20px;
+            display: flex;
         }
 
         .btnbox {
@@ -108,15 +106,33 @@
             text-decoration: none;
             border-radius: 20px;
         }
-
         .favorite-toggle {
             display: inline-block;
             margin-top: 20px;
         }
-
         .heart {
             font-size: 24px;
             color: red;
+            text-decoration: none;
+        }
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 영화 설명 박스 */
+        .description {
+            font-size: 1.5em;
+            line-height: 2em;
+            text-align: left;
+            width: 30vw;
+            height: 50vh;
+            background-color: darkgray;
+            color: black;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 0 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 25);
         }
 
         /* 팝업 스타일 */
@@ -160,21 +176,35 @@
             background-color: red;
             color: white;
         }
-
-        /* 영화 설명 박스 */
-        .description {
-            font-size: 28px;
-            position: fixed;
-            top: 45%;
-            right: 15%;
-            width: 300px;
-            height: 500px;
-            background-color: darkgray;
-            color: black;
-            padding: 20px;
+        .comment-box {
+            background-color: #0d1423;
             border-radius: 10px;
-            transform: translateY(-50%);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 25);
         }
+        .comment {
+            margin-top: 15px;
+        }
+        .title {
+            display: inline-block;
+            font-size: 2em;
+        }
+        .comment p{
+            display: inline-block;
+            font-size: 1em;
+        }
+        .comment i{
+            margin-right: 10px;
+            font-size: 1.2em;
+            padding: 5px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+        }
+
+
     </style>
 </head>
 
@@ -220,16 +250,37 @@
         if (!$tagsResult) {
             die("<p>SQL error: " . $conn->error . "</p>");
         }
+        echo"<div class = 'content'>";
         echo "<div class='poster'>
             <img src='../Assets/Images/Posters/" . $movieId . ".jpg' alt='" .
             htmlspecialchars($movieId) . " Poster'>
             </div>";
-        echo "<p class=\"Taging\">Tags: ";
+            $sql = "SELECT description FROM movie_descriptions WHERE movie_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $movieId);
+        $stmt->execute();
+        $stmt->bind_result($description);
+        $stmt->fetch();
+        $stmt->close();
+        echo'
+        <div class="description">';
+            echo htmlspecialchars($description);
+            echo'
+        </div>';
+        echo "<p class=\"Taging\"> ";
+        echo '<div class="comment-box">';
+        echo '<span class="title">Comments</span>';
         while ($tag = $tagsResult->fetch_assoc()) {
+            echo '<div class="comment"> <i class="fa-regular fa-user"></i>';
+            echo '<p>';
             echo htmlspecialchars($tag['tag']) . " ";
+            echo '</p>';
+            echo '</div>';
         }
+        echo '</div>';
+        
         echo "</p></div>";
-        echo "<div class=\"btnbox\"><a href='#' id='addCommentButton'>Add rating and tag</a>";
+        echo "<div class=\"btnbox\"><a href='#' id='addCommentButton'>Add rating and comment</a>";
         echo "<a href='movieList.php'>Back to Movie List</a></div>";
 
         $userId = $_SESSION['user_id'];  // 사용자 ID를 세션에서 가져옵니다.
@@ -253,6 +304,8 @@
         ' . ($favorited ? '&#x2665;' : '&#x2661;') . '
         </span>
         </a>';
+         echo'
+        </div>';
     } else {
         echo "<p>Movie not found.</p>";
     }
@@ -269,28 +322,7 @@
             <button type="submit">Submit</button>
             <button type="button" class="close">Close</button>
         </form>
-    </div>
-
-    <?php
-    require_once 'db.php';
-
-    $sql = "SELECT description FROM movie_descriptions WHERE movie_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $movieId);
-    $stmt->execute();
-    $stmt->bind_result($description);
-    $stmt->fetch();
-    $stmt->close();
-    ?>
-
-
-    <div class="description">
-        <?php
-        echo htmlspecialchars($description);
-        ?>
-    </div>
-
-
+</div>
     <script>
         document.getElementById('addCommentButton').addEventListener('click', function (e) {
             e.preventDefault();

@@ -1,68 +1,59 @@
 <?php
-session_start();
+// 데이터베이스 연결
+require_once 'db.php';
 
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    echo json_encode(['success' => false, 'message' => 'User not logged in']);
-    exit;
-}
+$genre = $_GET['genres'];
+$year = $_GET['year'];
+$third_data = $_GET['third_data'];
 
-$userId = $_SESSION['user_id'];
+$sql = "SELECT * FROM movies WHERE genres = '$genre'";
 
-require_once 'db.php'; // 데이터베이스 연결 스크립트
+$result = $conn->query($sql);
 
-// 사용자가 좋아요 누른 영화 중 가장 많이 나온 장르의 영화
-$sql = "SELECT m.genres, COUNT(*) AS genre_count
-        FROM favorites f
-        JOIN movies m ON f.movie_id = m.movieId
-        WHERE f.user_id = ?
-        GROUP BY m.genres
-        ORDER BY genre_count DESC
-        LIMIT 1";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $userId);
-$stmt->execute();
-$result = $stmt->get_result();
+$filtered_movie_ids = array(); // 년도 조건을 만족하는 영화 아이디를 저장할 배열
 
 if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $mostPopularGenre = $row['genres'];
+    while ($row = $result->fetch_assoc()) {
+        preg_match('/\((\d{4})\)/', $row['title'], $matches);
+        $movie_year = isset($matches[1]) ? $matches[1] : null;
 
-    // 가장 많이 나온 장르의 영화 중 별점을 단 수가 많고 평균 별점이 높은 영화
-    $sql = "SELECT m.movieId, m.title, AVG(r.rating) AS average_rating
-            FROM favorites f
-            JOIN movies m ON f.movie_id = m.movieId
-            LEFT JOIN ratings r ON m.movieId = r.movieId
-            WHERE f.user_id = ? AND m.genres = ?
-            GROUP BY m.movieId, m.title
-            HAVING COUNT(r.rating) > 10
-            ORDER BY average_rating DESC
-            LIMIT 3";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("is", $userId, $mostPopularGenre);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $recommendedMovies = [];
-        while ($row = $result->fetch_assoc()) {
-            $recommendedMovies[] = [
-                'movieId' => $row['movieId'],
-                'title' => $row['title'],
-                'average_rating' => round($row['average_rating'], 2)
-            ];
+        // 년도가 조건을 만족하는 경우에만 영화 아이디를 배열에 저장
+        if ($movie_year !== null && $movie_year >= $year && $movie_year < ($year + 10)) {
+            $filtered_movie_ids[] = $row['movieId'];
         }
-        // 추천된 영화 정보를 JSON 파일로 저장
-        file_put_contents('recommended_movies.json', json_encode($recommendedMovies));
-        echo "Recommended movies saved successfully.";
-    } else {
-        echo "No recommended movies found.";
     }
 } else {
-    echo "No favorite movies found.";
+    echo "No movies found with the given genre.";
 }
 
-$stmt->close();
+if ($third_data === 'comment') {
+    // 가장 많은 태그 수를 가진 영화의 아이디를 저장할 변수
+    $best_movie_id = null;
+    $max_tag_count = 0;
+
+    // 각 영화 아이디에 대해 태그 수를 계산하여 가장 많은 태그 수를 가진 영화의 아이디 찾기
+    foreach ($filtered_movie_ids as $movie_id) {
+        // 해당 영화 아이디를 가진 태그의 수를 계산하는 쿼리
+        $sql = "SELECT COUNT(*) AS tag_count FROM tags WHERE movieId = $movie_id";
+        $result = $conn->query($sql);
+
+        // 쿼리 결과에서 태그 수를 가져옴
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $tag_count = $row['tag_count'];
+
+            // 현재 영화의 태그 수가 최대 태그 수보다 크면 업데이트
+            if ($tag_count > $max_tag_count) {
+                $max_tag_count = $tag_count;
+                $best_movie_id = $movie_id;
+            }
+        }
+    }
+
+    // 가장 많은 태그 수를 가진 영화의 아이디 출력 (테스트용)
+    echo "Best Movie ID: " . $best_movie_id;
+}
+
+// 연결 종료
 $conn->close();
 ?>
