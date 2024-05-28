@@ -51,9 +51,36 @@ if ($third_data === 'comment') {
     }
 
     // 가장 많은 태그 수를 가진 영화의 아이디 출력 (테스트용)
-    echo "Best Movie ID: " . $best_movie_id;
+}
+if ($third_data === 'rating') {
+    $best_movie_id = null;
+    $max_av_rating = 0;
+
+    foreach ($filtered_movie_ids as $movie_id) {
+        $sql = "SELECT AVG(r.rating) AS average_rating FROM 
+        ratings r WHERE r.movieId = $movie_id";
+        $result = $conn->query($sql);
+
+        // 쿼리 결과에서 태그 수를 가져옴
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $av_rating = $row['average_rating'];
+
+            // 현재 영화의 태그 수가 최대 태그 수보다 크면 업데이트
+            if ($av_rating > $max_av_rating) {
+                $max_av_rating = $av_rating;
+                $best_movie_id = $movie_id;
+            }
+        }
+    }
 }
 
 // 연결 종료
 $conn->close();
+if ($best_movie_id !== null) {
+    header("Location: ../html_files/recommendPanel.php?best_movie_id=" . $best_movie_id);
+    exit;
+} else {
+    echo "No movies found with the given criteria.";
+}
 ?>
