@@ -369,11 +369,11 @@
                         .then(data => {
                             if (data.success) {
                                 if (isFavorited) {
-                                    this.innerHTML = '<span class="heart">&#x2661;</span>'; // 빈 하트
+                                    this.innerHTML = '<i class="fa-regular fa-heart"></i>'; // 빈 하트
                                     this.setAttribute('data-favorited', '0');
                                     alert('Favorite removed'); // 추가: 제거 성공 메시지
                                 } else {
-                                    this.innerHTML = '<span class="heart">&#x2665;</span>'; // 꽉 찬 하트
+                                    this.innerHTML = '<i class="fa-solid fa-heart"></i>'; // 꽉 찬 하트
                                     this.setAttribute('data-favorited', '1');
                                     alert('Favorite added'); // 추가: 추가 성공 메시지
                                 }

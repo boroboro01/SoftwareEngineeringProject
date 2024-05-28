@@ -61,18 +61,7 @@
             text-decoration: none;
             color: white;
         }
-        .pagination a {
-            margin: 0 5px;
-            padding: 5px 10px;
-            border: 1px solid black;
-            text-decoration: none;
-            color: white;
-        }
 
-        .pagination a.active {
-            background-color: #4CAF50;
-            color: black;
-        }
         .pagination a.active {
             background-color: #4CAF50;
             color: black;
@@ -87,9 +76,7 @@
             color: #fff;
         }
     </style>
-
 </head>
-
 
 <body>
     <!-- <div class="card">
@@ -313,7 +300,11 @@
                     </td>";
 
         }
-        echo "</table>";
+        echo "
+                </tr>
+            </table>
+        </div>
+        ";
     } else {
         echo "0 results found";
     }
@@ -326,7 +317,7 @@
     for ($i = $start; $i <= $end; $i++) {
         echo "<a href='?page=$i'" . ($page == $i ? " class='active'" : "") . ">$i</a>";
     }
-    echo "</div>";
+    echo "</div></wrapper>";
 
     $conn->close();
     ?>
